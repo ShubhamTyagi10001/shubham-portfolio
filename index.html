@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Portfolio of Shubham Tyagi - Senior Web Developer & Consultant specializing in Laravel, Custom CMS, WordPress, WhatsApp Automation (n8n), and Shopify.">
+    <title>Shubham Tyagi | Senior Web Developer & Consultant</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --bg: #030407;
+            --surface: #0a0c14;
+            --surface-hover: #121522;
+            --surface-card: rgba(15, 18, 28, 0.7);
+            --text: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --muted: #94a3b8;
+            --line: rgba(255, 255, 255, 0.08);
+            --line-accent: rgba(139, 92, 246, 0.3);
+            --accent: #8b5cf6;
+            --accent-glow: #7c3aed;
+            --accent-2: #a78bfa;
+            --cyan: #06b6d4;
+            --emerald: #10b981;
+            --max: 1200px;
+            --radius: 20px;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg);
+            background-image:
+                radial-gradient(circle at 15% 15%, rgba(139, 92, 246, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 85% 40%, rgba(6, 182, 212, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 50% 80%, rgba(124, 58, 237, 0.06) 0%, transparent 50%);
+            background-attachment: fixed;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .container {
+            width: min(calc(100% - 48px), var(--max));
+            margin: auto;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            background: rgba(3, 4, 7, 0.8);
+            border-bottom: 1px solid var(--line);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 76px;
+        }
+
+        .logo {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: var(--muted);
+            transition: all 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text);
+        }
+
+        .nav-links .nav-cta {
+            color: var(--text);
+            padding: 9px 20px;
+            background: rgba(139, 92, 246, 0.1);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 999px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links .nav-cta:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+            box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
+            transform: translateY(-2px);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 130px 0 80px;
+            position: relative;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-2);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            background: rgba(139, 92, 246, 0.08);
+            padding: 6px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(139, 92, 246, 0.2);
+        }
+
+        .eyebrow-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Outfit', sans-serif;
+            line-height: 1.1;
+        }
+
+        h1 {
+            font-size: clamp(2.8rem, 5.5vw, 5.2rem);
+            letter-spacing: -0.04em;
+            font-weight: 800;
+            max-width: 920px;
+        }
+
+        h1 span {
+            background: linear-gradient(135deg, #a78bfa 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 3.8vw, 3.2rem);
+            letter-spacing: -0.03em;
+            font-weight: 700;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 0.7fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-copy {
+            max-width: 680px;
+            font-size: 1.12rem;
+            color: var(--muted);
+            margin-top: 24px;
+            line-height: 1.7;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 36px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 14px 26px;
+            border-radius: 999px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+            color: #fff;
+            box-shadow: 0 4px 25px rgba(139, 92, 246, 0.35);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(139, 92, 246, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.04);
+            color: var(--text);
+            border: 1px solid var(--line);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+
+        .hero-card {
+            background: var(--surface-card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 32px;
+            backdrop-filter: blur(20px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+            position: relative;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.5), transparent);
+        }
+
+        .availability {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-secondary);
+            font-size: 0.92rem;
+            margin-bottom: 28px;
+            font-weight: 500;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background: var(--emerald);
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px rgba(16, 185, 129, 0.15);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+
+        .stat {
+            padding: 20px 0;
+            border-top: 1px solid var(--line);
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 1.65rem;
+            font-family: 'Outfit', sans-serif;
+            color: var(--text);
+            font-weight: 700;
+        }
+
+        .stat span {
+            font-size: 0.88rem;
+            color: var(--muted);
+        }
+
+        .section {
+            padding: 110px 0;
+            position: relative;
+        }
+
+        .section-head {
+            display: flex;
+            justify-content: space-between;
+            gap: 40px;
+            align-items: flex-end;
+            margin-bottom: 56px;
+        }
+
+        .section-head p {
+            max-width: 500px;
+            font-size: 1.05rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .project-card {
+            background: var(--surface-card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: all 0.35s ease;
+            backdrop-filter: blur(16px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent), var(--cyan));
+            opacity: 0;
+            transition: opacity 0.35s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(139, 92, 246, 0.35);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(139, 92, 246, 0.15);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-badge {
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: var(--cyan);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .project-card h3 {
+            font-size: 1.5rem;
+            color: var(--text);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+
+        .project-card p {
+            font-size: 0.95rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+
+        .tag {
+            border: 1px solid var(--line);
+            background: rgba(255, 255, 255, 0.03);
+            color: var(--text-secondary);
+            border-radius: 999px;
+            padding: 6px 12px;
+            font-size: 0.78rem;
+            font-weight: 500;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-2);
+            font-weight: 600;
+            font-size: 0.92rem;
+            transition: all 0.25s ease;
+            margin-top: auto;
+        }
+
+        .project-link:hover {
+            color: var(--text);
+            gap: 12px;
+        }
+
+        /* Expertise Cards */
+        .expertise-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .card {
+            background: var(--surface-card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            padding: 32px;
+            transition: all 0.35s ease;
+            backdrop-filter: blur(16px);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(139, 92, 246, 0.3);
+            background: var(--surface-hover);
+        }
+
+        .number {
+            color: var(--accent);
+            font-size: 0.8rem;
+            font-weight: 800;
+            letter-spacing: 0.1em;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin: 36px 0 12px;
+        }
+
+        /* Timeline / Experience */
+        .timeline {
+            display: grid;
+            gap: 20px;
+        }
+
+        .role {
+            display: grid;
+            grid-template-columns: 210px 1fr;
+            gap: 40px;
+            padding: 32px;
+            background: var(--surface-card);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            transition: all 0.3s ease;
+        }
+
+        .role:hover {
+            border-color: rgba(139, 92, 246, 0.3);
+            transform: translateX(4px);
+        }
+
+        .role-meta {
+            color: var(--muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .role h3 {
+            font-size: 1.45rem;
+            margin-bottom: 6px;
+        }
+
+        .company {
+            color: var(--accent-2);
+            font-weight: 700;
+            font-size: 1.05rem;
+        }
+
+        .role p {
+            margin-top: 12px;
+            max-width: 780px;
+            font-size: 0.98rem;
+        }
+
+        /* CTA Banner */
+        .cta-box {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%);
+            border: 1px solid rgba(139, 92, 246, 0.25);
+            border-radius: var(--radius);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-box h2 {
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            margin-bottom: 16px;
+        }
+
+        .cta-box p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--line);
+            padding: 40px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            color: var(--muted);
+            font-size: 0.92rem;
+        }
+
+        .footer a {
+            color: var(--accent-2);
+            transition: color 0.2s ease;
+        }
+
+        .footer a:hover {
+            color: var(--text);
+        }
+
+        /* Responsive Breakpoints */
+        @media(max-width: 1024px) {
+
+            .projects-grid,
+            .expertise-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 850px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .projects-grid,
+            .expertise-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 80px 0;
+            }
+
+            .role {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                padding: 24px;
+            }
+        }
+
+        @media(max-width: 580px) {
+            .container {
+                width: min(calc(100% - 32px), var(--max));
+            }
+
+            h1 {
+                font-size: 2.7rem;
+            }
+
+            .hero {
+                padding-top: 110px;
+            }
+
+            .section-head {
+                display: block;
+            }
+
+            .section-head p {
+                margin-top: 12px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+            }
+
+            .hero-actions .btn {
+                width: 100%;
+            }
+
+            .nav-links {
+                gap: 16px;
+            }
+
+            .nav-links a:not(.nav-cta) {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">Shubham<span>.dev</span></a>
+            <div class="nav-links">
+                <a href="#projects">Projects</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#experience">Experience</a>
+                <a href="#education">Education & Awards</a>
+                <a href="mailto:tyagishubham5505@gmail.com" class="nav-cta">Connect</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="hero">
+        <div class="container hero-grid">
+            <div>
+                <div class="eyebrow">
+                    <span class="eyebrow-dot"></span> Senior Web Developer & Consultant
+                </div>
+                <h1>Building <span>scalable web applications</span> & automated digital products.</h1>
+                <p class="hero-copy">
+                    I'm Shubham Tyagi, a Web Developer with 4+ years of experience building high-performance
+                    web applications, custom CMS solutions, WhatsApp automation workflows, and e-commerce stores.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="#projects">
+                        Explore Featured Projects
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                    <a class="btn btn-secondary" href="mailto:tyagishubham5505@gmail.com">Get In Touch</a>
+                </div>
+            </div>
+
+            <aside class="hero-card">
+                <div class="availability"><span class="dot"></span> Senior Developer · Available for Projects</div>
+                <div class="stat"><strong>4+ Years</strong><span>Web development & leadership</span></div>
+                <div class="stat">
+                    <strong>Senior Web Developer</strong>
+                    <span><a href="https://quickranks.com/about-us#quickranks-team" target="_blank"
+                            rel="noopener noreferrer" style="color: var(--accent-2); text-decoration: underline;">View
+                            Team Profile ↗</a></span>
+                </div>
+                <div class="stat"><strong>WhatsApp & n8n</strong><span>Automation & bulk campaigns</span></div>
+            </aside>
+        </div>
+    </header>
+
+    <!-- FEATURED PROJECTS -->
+    <section class="section" id="projects">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow"><span class="eyebrow-dot"></span> Portfolio Highlights</div>
+                    <h2>Featured Projects & Web Applications</h2>
+                </div>
+                <p>
+                    Production web applications, custom e-commerce CMS platforms, WhatsApp bulk automation tools, custom
+                    WordPress solutions, and online stores I have developed.
+                </p>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1: ToolsTribe -->
+                <article class="project-card">
+                    <div>
+                        <div class="project-badge">Laravel · E-Commerce CMS</div>
+                        <h3>ToolsTribe</h3>
+                        <p>
+                            Full-featured E-commerce CMS built with Laravel for digital tools and subscription store.
+                            Features high-converting landing pages, custom CMS admin panel, payment gateway integration,
+                            and automated user access.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Laravel</span>
+                            <span class="tag">E-Commerce CMS</span>
+                            <span class="tag">PHP</span>
+                            <span class="tag">Landing Pages</span>
+                            <span class="tag">MySQL</span>
+                        </div>
+                    </div>
+                    <a class="project-link" href="https://www.toolstribe.store/" target="_blank"
+                        rel="noopener noreferrer">
+                        Visit Live Project
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </article>
+
+                <!-- Project 2: BotBrim -->
+                <article class="project-card">
+                    <div>
+                        <div class="project-badge">Laravel · Automation Platform</div>
+                        <h3>BotBrim</h3>
+                        <p>
+                            WhatsApp bulk messaging & campaign automation platform. Built with Laravel and integrated
+                            with n8n workflow engine to deliver automated messaging campaigns, trigger responses, and
+                            audience management.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Laravel</span>
+                            <span class="tag">WhatsApp Bulk API</span>
+                            <span class="tag">n8n Automation</span>
+                            <span class="tag">REST API</span>
+                        </div>
+                    </div>
+                    <a class="project-link" href="https://botbrim.com/" target="_blank" rel="noopener noreferrer">
+                        Visit Live Project
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </article>
+
+                <!-- Project 3: Dify World -->
+                <article class="project-card">
+                    <div>
+                        <div class="project-badge">Shopify · E-Commerce Store</div>
+                        <h3>Dify World</h3>
+                        <p>
+                            Niche e-commerce store designed and launched on Shopify. Configured custom Liquid layout,
+                            theme enhancements, product catalog workflows, and optimized checkout funnel for high
+                            conversion.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Shopify</span>
+                            <span class="tag">Liquid</span>
+                            <span class="tag">UI/UX Customization</span>
+                            <span class="tag">E-Commerce</span>
+                        </div>
+                    </div>
+                    <a class="project-link" href="https://difyworld.in/" target="_blank" rel="noopener noreferrer">
+                        Visit Live Store
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </article>
+
+                <!-- Project 4: Law Universe Web Platform -->
+                <article class="project-card">
+                    <div>
+                        <div class="project-badge">Core PHP · Razorpay · Multi-Role Engine</div>
+                        <h3>Law Universe Web Platform</h3>
+                        <p>
+                            Role-based web platform featuring separate dashboards for Students, Advocates, Admins, and
+                            Super Admins. Includes PDF book store, online exam engine, certificate downloads, Razorpay
+                            payment gateway integration, and PHP multi-task threading.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Core PHP</span>
+                            <span class="tag">MySQL</span>
+                            <span class="tag">Razorpay API</span>
+                            <span class="tag">Multi-Role Engine</span>
+                            <span class="tag">Exams & Certification</span>
+                        </div>
+                    </div>
+                    <a class="project-link" href="#contact">
+                        View Project Details
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </article>
+
+                <!-- Project 5: WordPress Inclusive Dating Platform -->
+                <article class="project-card">
+                    <div>
+                        <div class="project-badge">WordPress · Custom Theme & Plugin</div>
+                        <h3>WordPress Dating & Social Platform</h3>
+                        <p>
+                            Custom WordPress platform tailored for singles & couples with bespoke theme and plugin
+                            architecture. Features custom multi-gender authentication, dynamic profile builder, friend
+                            request engine, and WebRTC real-time chat & video call API integrations.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">WordPress</span>
+                            <span class="tag">Custom Theme</span>
+                            <span class="tag">Custom Plugins</span>
+                            <span class="tag">WebRTC Video API</span>
+                            <span class="tag">AJAX / Chat</span>
+                        </div>
+                    </div>
+                    <a class="project-link" href="#contact">
+                        View Project Details
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </article>
+
+                <!-- Project 6: News App & BIB Doc Editor -->
+                <article class="project-card">
+                    <div>
+                        <div class="project-badge">REST API · Vue.js · Dynamic Systems</div>
+                        <h3>News Web App & BIB Doc Editor</h3>
+                        <p>
+                            REST API news application delivering real-time categorized updates (Sports, Business, Legal)
+                            + web-based document editor (BIB Doc Editor) built with Vue.js & Richedit library for
+                            real-time formatting and exports.
+                        </p>
+                        <div class="project-tags">
+                            <span class="tag">Fetch API</span>
+                            <span class="tag">REST API</span>
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Richedit Library</span>
+                            <span class="tag">PHP</span>
+                        </div>
+                    </div>
+                    <a class="project-link" href="#contact">
+                        View Project Details
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2.5">
+                            <line x1="7" y1="17" x2="17" y2="7"></line>
+                            <polyline points="7 7 17 7 17 17"></polyline>
+                        </svg>
+                    </a>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section class="section" id="expertise">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow"><span class="eyebrow-dot"></span> Core Skills</div>
+                    <h2>Technical Expertise & Solutions</h2>
+                </div>
+                <p>
+                    Combining backend engineering, WordPress theme & plugin development, and automation integrations for
+                    scalable business solutions.
+                </p>
+            </div>
+
+            <div class="expertise-grid">
+                <article class="card">
+                    <div class="number">01 / LARAVEL & BACKEND ARCHITECTURE</div>
+                    <h3>Laravel & Core PHP Engineering</h3>
+                    <p>Engineered full-stack applications using Laravel & Core PHP with clean MVC design, MySQL database
+                        structures, RESTful APIs, JWT token authentication, and multi-task threading.</p>
+                    <div class="tags" style="margin-top: 20px;">
+                        <span class="tag">Laravel</span>
+                        <span class="tag">Core PHP</span>
+                        <span class="tag">MySQL / SQL</span>
+                        <span class="tag">REST APIs</span>
+                        <span class="tag">JWT Auth</span>
+                        <span class="tag">PHP Threading</span>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="number">02 / WORDPRESS & CMS MASTERY</div>
+                    <h3>WordPress Custom Engineering</h3>
+                    <p>Building 40+ WordPress websites with custom theme creation, custom plugin development, child
+                        themes & modifications, Custom Post Types (CPT), Razorpay/Stripe payment gateways, Elementor &
+                        Divi.</p>
+                    <div class="tags" style="margin-top: 20px;">
+                        <span class="tag">Custom Themes</span>
+                        <span class="tag">Custom Plugins</span>
+                        <span class="tag">Child Themes</span>
+                        <span class="tag">Custom Post Types</span>
+                        <span class="tag">Payment Gateways</span>
+                        <span class="tag">Elementor / Divi</span>
+                    </div>
+                </article>
+
+                <article class="card">
+                    <div class="number">03 / FRONTEND, AUTOMATION & MOBILE</div>
+                    <h3>Frontend, Automation & Integrations</h3>
+                    <p>Crafting responsive interfaces using HTML5, CSS3, Bootstrap, JavaScript, jQuery, AJAX, Fetch API,
+                        n8n WhatsApp bulk workflows, Shopify customization, and FlutterFlow mobile apps.</p>
+                    <div class="tags" style="margin-top: 20px;">
+                        <span class="tag">HTML5 / CSS3</span>
+                        <span class="tag">JavaScript / jQuery</span>
+                        <span class="tag">AJAX / Fetch API</span>
+                        <span class="tag">n8n Workflows</span>
+                        <span class="tag">Shopify</span>
+                        <span class="tag">FlutterFlow</span>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="section" id="experience">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow"><span class="eyebrow-dot"></span> Career History</div>
+                    <h2>Professional Experience</h2>
+                </div>
+                <p>Progressing from core software engineering to team lead and technical consultant.</p>
+            </div>
+
+            <div class="timeline">
+                <article class="role">
+                    <div class="role-meta">Jul 2025 — Present<br>Noida</div>
+                    <div>
+                        <h3>Senior Web Developer — Consultant</h3>
+                        <div class="company">
+                            <a href="https://quickranks.com/about-us#quickranks-team" target="_blank"
+                                rel="noopener noreferrer" style="display: inline-flex; align-items: center; gap: 6px;">
+                                Quick Ranks
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5">
+                                    <line x1="7" y1="17" x2="17" y2="7"></line>
+                                    <polyline points="7 7 17 7 17 17"></polyline>
+                                </svg>
+                            </a>
+                        </div>
+                        <p>Working across Laravel web applications (ToolsTribe, BotBrim), WhatsApp campaign automation
+                            with n8n, custom CMS development, WordPress customizations, and Flutter app integrations.
+                        </p>
+                        <a href="https://quickranks.com/about-us#quickranks-team" target="_blank"
+                            rel="noopener noreferrer"
+                            style="display: inline-flex; align-items: center; gap: 6px; margin-top: 14px; font-size: 0.88rem; font-weight: 600; color: var(--accent-2);">
+                            View Team Profile on Quick Ranks
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.5">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="role">
+                    <div class="role-meta">Jan 2025 — Jul 2025<br>Meerut</div>
+                    <div>
+                        <h3>Team Lead</h3>
+                        <div class="company">Global Matrix Solution</div>
+                        <p>Led developer team, oversaw end-to-end web architecture, reviewed code standards, optimized
+                            server performance, and managed client delivery timelines.</p>
+                    </div>
+                </article>
+
+                <article class="role">
+                    <div class="role-meta">Jan 2023 — Jan 2025<br>Meerut</div>
+                    <div>
+                        <h3>Software Engineer</h3>
+                        <div class="company">Global Matrix Solution</div>
+                        <p>Engineered full-stack solutions using PHP, MySQL, JavaScript, and Bootstrap. Created custom
+                            WordPress themes, plugins, REST APIs, and managed Shopify & Webflow projects.</p>
+                    </div>
+                </article>
+
+                <article class="role">
+                    <div class="role-meta">Aug 2022 — Jan 2023<br>Meerut</div>
+                    <div>
+                        <h3>Junior Software Engineer</h3>
+                        <div class="company">Global Matrix Solution</div>
+                        <p>Developed responsive frontend layouts, interactive features with jQuery & AJAX, PHP backend
+                            modules, WordPress theme tweaks, and performed system testing.</p>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION & ACHIEVEMENTS -->
+    <section class="section" id="education">
+        <div class="container">
+            <div class="section-head">
+                <div>
+                    <div class="eyebrow"><span class="eyebrow-dot"></span> Credentials & Recognition</div>
+                    <h2>Education & Achievements</h2>
+                </div>
+                <p>Academic qualifications and professional awards earned across my software development career.</p>
+            </div>
+
+            <div class="expertise-grid">
+                <article class="card">
+                    <div class="number">POST GRADUATION</div>
+                    <h3>Master of Computer Application (MCA)</h3>
+                    <p style="color: var(--accent-2); font-weight: 700; font-size: 1.1rem; margin-top: 8px;">Score:
+                        82.33% (First Division)</p>
+                    <p style="margin-top: 8px;">Dr. A.P.J. Abdul Kalam Technical University (AKTU) — 2022</p>
+                </article>
+
+                <article class="card">
+                    <div class="number">GRADUATION</div>
+                    <h3>B.Sc. (Computer Science)</h3>
+                    <p style="color: var(--accent-2); font-weight: 700; font-size: 1.1rem; margin-top: 8px;">Chaudhary
+                        Charan Singh University</p>
+                    <p style="margin-top: 8px;">CCSU, Meerut — 2018</p>
+                </article>
+
+                <article class="card">
+                    <div class="number">RECOGNITION</div>
+                    <h3>Full Stack Magician Award</h3>
+                    <p style="color: var(--emerald); font-weight: 700; font-size: 1.1rem; margin-top: 8px;">Awarded at
+                        Global Matrix Solution</p>
+                    <p style="margin-top: 8px;">Recognized for exceptional technical leadership, full-stack application
+                        engineering, and 40+ delivered WordPress websites.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA CONTACT SECTION -->
+    <section class="section" id="contact">
+        <div class="container">
+            <div class="cta-box">
+                <h2>Interested in working together?</h2>
+                <p>Whether you need a custom Laravel application, automated n8n workflows, WordPress CMS, or a
+                    high-converting store — let's build it.</p>
+                <a class="btn btn-primary" href="mailto:tyagishubham5505@gmail.com" style="display: inline-flex;">
+                    Contact Me: tyagishubham5505@gmail.com
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2.5">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="container footer">
+        <div>© Shubham Tyagi · Senior Web Developer & Consultant</div>
+        <a href="mailto:tyagishubham5505@gmail.com">tyagishubham5505@gmail.com</a>
+    </footer>
+
+</body>
+
+</html>
