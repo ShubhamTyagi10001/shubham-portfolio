@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gen AI Roadmap | Shubham Tyagi</title>
+    <meta name="description" content="Web developers ke liye Generative AI roadmap: har topic ke saath free resources, job requirements aur salary guide.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #030407;
+            --surface: #0a0c14;
+            --card: rgba(15, 18, 28, 0.72);
+            --text: #f8fafc;
+            --text2: #cbd5e1;
+            --muted: #94a3b8;
+            --line: rgba(255, 255, 255, 0.08);
+            --accent: #8b5cf6;
+            --cyan: #06b6d4;
+            --green: #10b981;
+            --amber: #f59e0b;
+            --red: #f43f5e;
+            --radius: 20px;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body {
+            background: var(--bg); color: var(--text2);
+            font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.7;
+            background-image: radial-gradient(circle at 12% 0%, rgba(139,92,246,.18), transparent 40%),
+                              radial-gradient(circle at 92% 25%, rgba(6,182,212,.10), transparent 40%);
+            background-attachment: fixed;
+        }
+        h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; color: var(--text); line-height: 1.25; }
+        a { color: var(--cyan); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .wrap { max-width: 1180px; margin: 0 auto; padding: 0 16px; }
+        .ic { width: 1.1em; height: 1.1em; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; vertical-align: -.17em; margin-right: .4em; flex: none; }
+        h2 .ic { color: var(--accent); }
+        .hi { font-family: 'Plus Jakarta Sans', 'Nirmala UI', sans-serif; font-weight: 700; margin-right: .4em; }
+        code { background: rgba(255,255,255,.07); padding: 1px 6px; border-radius: 6px; font-size: .85em; color: var(--text); }
+
+        /* top bar */
+        .topbar { position: sticky; top: 0; z-index: 20; background: rgba(3,4,7,.88); backdrop-filter: blur(12px); border-bottom: 1px solid var(--line); }
+        .topbar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 60px; }
+        .logo { font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text); }
+        .logo span { color: var(--accent); }
+        .progress-wrap { flex: 1; max-width: 320px; }
+        .progress-label { font-size: .75rem; color: var(--muted); display: flex; justify-content: space-between; }
+        .bar { height: 6px; background: var(--line); border-radius: 99px; overflow: hidden; margin-top: 4px; }
+        .bar > i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), var(--cyan)); transition: width .4s; }
+        .toplinks { display: flex; gap: 18px; font-size: .88rem; }
+        .toplinks a { color: var(--muted); }
+        .toplinks a:hover { color: var(--text); text-decoration: none; }
+
+        /* hero */
+        .hero { padding: 64px 0 28px; text-align: center; }
+        .tag { display: inline-block; padding: 6px 14px; border-radius: 99px; border: 1px solid rgba(139,92,246,.3); background: rgba(139,92,246,.1); color: #c4b5fd; font-size: .8rem; font-weight: 600; margin-bottom: 20px; }
+        .hero h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 800; letter-spacing: -.02em; }
+        .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--accent), var(--cyan)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+        .hero p { max-width: 680px; margin: 18px auto 0; color: var(--muted); font-size: 1.05rem; }
+        .stats { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+        .stat { padding: 10px 18px; border: 1px solid var(--line); border-radius: 14px; background: var(--card); font-size: .9rem; }
+        .stat b { color: var(--text); font-family: 'Outfit', sans-serif; }
+
+        /* sections */
+        .block { margin: 48px 0; }
+        .block > h2 { font-size: 1.9rem; margin-bottom: 6px; }
+        .block > .sub { color: var(--muted); margin-bottom: 22px; }
+        .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+        .callout { padding: 16px 20px; border-radius: 16px; font-size: .93rem; margin-top: 16px; border: 1px solid; }
+        .callout.g { border-color: rgba(16,185,129,.3); background: rgba(16,185,129,.07); }
+        .callout.a { border-color: rgba(245,158,11,.3); background: rgba(245,158,11,.07); }
+        .callout b { color: var(--text); }
+
+        /* job market */
+        .skillrow { display: grid; grid-template-columns: 170px 1fr 90px; gap: 12px; align-items: center; margin-bottom: 10px; font-size: .92rem; }
+        .skillrow .meter { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; }
+        .skillrow .meter i { display: block; height: 100%; background: linear-gradient(90deg, var(--accent), var(--cyan)); }
+        .badge { font-size: .72rem; font-weight: 700; padding: 2px 10px; border-radius: 99px; text-align: center; }
+        .badge.must { color: var(--red); background: rgba(244,63,94,.12); }
+        .badge.high { color: var(--amber); background: rgba(245,158,11,.12); }
+        .badge.good { color: var(--green); background: rgba(16,185,129,.12); }
+        table { width: 100%; border-collapse: collapse; font-size: .92rem; }
+        th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--line); }
+        th { color: var(--text); font-family: 'Outfit', sans-serif; font-size: .85rem; text-transform: uppercase; letter-spacing: .05em; }
+        td.sal { color: var(--green); font-weight: 600; white-space: nowrap; }
+        .tablewrap { overflow-x: auto; }
+        ul.plain { padding-left: 20px; font-size: .93rem; }
+        ul.plain li { margin-bottom: 6px; }
+        .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .chip { font-size: .82rem; padding: 5px 12px; border-radius: 99px; border: 1px solid var(--line); background: rgba(255,255,255,.03); color: var(--text2); }
+        a.chip:hover { border-color: var(--accent); text-decoration: none; color: var(--text); }
+
+        /* layout for stages */
+        .layout { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: start; }
+        .side { position: sticky; top: 84px; max-height: calc(100vh - 100px); overflow-y: auto; }
+        .side h4 { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); margin-bottom: 10px; }
+        .side a { display: flex; gap: 8px; align-items: center; padding: 7px 10px; border-radius: 10px; font-size: .86rem; color: var(--muted); }
+        .side a:hover { background: rgba(255,255,255,.04); color: var(--text); text-decoration: none; }
+        .side a.active { background: rgba(139,92,246,.15); color: var(--text); box-shadow: inset 3px 0 0 var(--accent); }
+        .side a.done { color: var(--green); }
+        .side a b { font-family: 'Outfit', sans-serif; width: 20px; color: var(--accent); }
+        .side a.done b { color: var(--green); }
+
+        .filters { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-bottom: 20px; }
+        .filters span { font-size: .85rem; color: var(--muted); margin-right: 4px; }
+        .fbtn { font: inherit; font-size: .82rem; padding: 6px 14px; border-radius: 99px; border: 1px solid var(--line); background: transparent; color: var(--text2); cursor: pointer; }
+        .fbtn.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+        .stage { margin-bottom: 26px; }
+        .stage .card { padding: 26px; }
+        .stage.done .card { border-color: rgba(16,185,129,.4); }
+        .stage-head { display: flex; gap: 14px; align-items: flex-start; }
+        .num { flex: none; width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: rgba(139,92,246,.15); color: #c4b5fd; font: 700 1.1rem 'Outfit', sans-serif; }
+        .stage.done .num { background: rgba(16,185,129,.18); color: var(--green); }
+        .stage h2 { font-size: 1.5rem; }
+        .meta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+        .pill { font-size: .75rem; padding: 3px 10px; border-radius: 99px; border: 1px solid var(--line); color: var(--muted); }
+        .pill.time { color: var(--amber); border-color: rgba(245,158,11,.3); }
+        .pill.lvl { color: #c4b5fd; border-color: rgba(139,92,246,.3); }
+        .goal { margin: 14px 0 4px; color: var(--muted); font-size: .95rem; }
+        .why { margin-top: 10px; font-size: .88rem; padding: 10px 14px; border-radius: 12px; background: rgba(6,182,212,.07); border: 1px solid rgba(6,182,212,.25); }
+        .why b { color: var(--cyan); }
+
+        .topic { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--line); }
+        .topic-top label { display: flex; gap: 10px; align-items: flex-start; cursor: pointer; }
+        .topic-top input { margin-top: 7px; accent-color: var(--accent); width: 17px; height: 17px; flex: none; }
+        .topic-top h3 { font-size: 1.05rem; }
+        .topic-top p { font-size: .88rem; color: var(--muted); margin-top: 2px; }
+        .topic-top input:checked ~ div h3 { text-decoration: line-through; color: var(--muted); }
+        .res { list-style: none; margin: 10px 0 0 27px; display: grid; gap: 6px; }
+        .res li a { display: flex; gap: 10px; align-items: baseline; padding: 7px 12px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255,255,255,.02); font-size: .88rem; color: var(--text2); }
+        .res li a:hover { border-color: var(--accent); background: rgba(139,92,246,.07); text-decoration: none; }
+        .res .k { flex: none; font-size: .68rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; padding: 1px 8px; border-radius: 99px; }
+        .k.video { color: #fb7185; background: rgba(244,63,94,.12); }
+        .k.docs { color: var(--cyan); background: rgba(6,182,212,.12); }
+        .k.course { color: var(--amber); background: rgba(245,158,11,.12); }
+        .k.hindi { color: var(--green); background: rgba(16,185,129,.12); }
+        .k.tool { color: #c4b5fd; background: rgba(139,92,246,.15); }
+        .res .n { color: var(--muted); font-size: .8rem; }
+        .res li.hide { display: none; }
+
+        .steps { margin-top: 14px; padding: 14px 18px; border-radius: 14px; background: rgba(255,255,255,.03); border: 1px solid var(--line); }
+        .steps h4 { font-size: .95rem; margin-bottom: 8px; }
+        .steps ol { padding-left: 20px; font-size: .9rem; }
+        .steps li { margin-bottom: 4px; }
+        .steps .out { margin-top: 10px; font-size: .9rem; color: var(--text2); }
+        .how { margin: 10px 0 0 27px; padding: 10px 14px; border-radius: 12px; font-size: .88rem; background: rgba(245,158,11,.07); border: 1px solid rgba(245,158,11,.25); }
+        .how b { color: var(--amber); }
+        .ch-card { display: block; padding: 16px 18px; border-radius: 16px; border: 1px solid var(--line); background: var(--card); color: var(--text2); }
+        .ch-card:hover { border-color: var(--accent); text-decoration: none; }
+        .ch-card h3 { font-size: 1.05rem; margin-bottom: 4px; }
+        .ch-card p { font-size: .86rem; color: var(--muted); }
+        .ch-card span { font-size: .8rem; color: var(--cyan); }
+        ol.start { padding-left: 22px; font-size: .95rem; }
+        ol.start li { margin-bottom: 8px; }
+        .project { margin-top: 20px; padding: 14px 16px; border-radius: 14px; background: rgba(139,92,246,.08); border: 1px dashed rgba(139,92,246,.4); font-size: .92rem; }
+        .project b { color: #c4b5fd; }
+        .job { margin-top: 10px; padding: 12px 16px; border-radius: 14px; background: rgba(16,185,129,.07); border: 1px solid rgba(16,185,129,.25); font-size: .9rem; }
+        .job b { color: var(--green); }
+
+        footer { text-align: center; padding: 40px 16px 60px; color: var(--muted); font-size: .85rem; border-top: 1px solid var(--line); margin-top: 40px; }
+        .reset { background: none; border: 1px solid var(--line); color: var(--muted); padding: 6px 14px; border-radius: 99px; cursor: pointer; font: inherit; font-size: .8rem; margin-top: 12px; }
+        .reset:hover { color: var(--text); border-color: var(--accent); }
+
+        @media (max-width: 900px) {
+            .layout { grid-template-columns: 1fr; }
+            .side { display: none; }
+            .toplinks { display: none; }
+        }
+        @media (max-width: 600px) {
+            .skillrow { grid-template-columns: 1fr 70px; }
+            .skillrow .meter { grid-column: 1 / -1; order: 3; }
+            .stage .card { padding: 20px; }
+            .res, .how { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></symbol>
+    <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+    <symbol id="i-rupee" viewBox="0 0 24 24"><path d="M6 3h12M6 8h12M6 13l8.5 8M6 13h3a4 4 0 0 0 0-10"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="M22 4 12 14.01l-3-3"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4M12 17h.01"/></symbol>
+    <symbol id="i-mic" viewBox="0 0 24 24"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3"/></symbol>
+    <symbol id="i-compass" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88z"/></symbol>
+    <symbol id="i-flag" viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><path d="M4 22v-7"/></symbol>
+    <symbol id="i-pencil" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol>
+    <symbol id="i-map" viewBox="0 0 24 24"><path d="M1 6v16l7-4 8 4 7-4V2l-7 4-8-4z"/><path d="M8 2v16M16 6v16"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></symbol>
+    <symbol id="i-cap" viewBox="0 0 24 24"><path d="M22 10 12 5 2 10l10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></symbol>
+    <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94z"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="i-clipboard" viewBox="0 0 24 24"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></symbol>
+    <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><polygon points="6 3 20 12 6 21"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+</svg>
+
+<div class="topbar">
+    <div class="wrap">
+        <span class="logo">Shubham<span>.dev</span></span>
+        <div class="progress-wrap">
+            <div class="progress-label"><span>Progress</span><span id="pct">0%</span></div>
+            <div class="bar"><i id="bar"></i></div>
+        </div>
+        <div class="toplinks">
+            <a href="#start">Shuru karo</a>
+            <a href="#jobs">Jobs &amp; Salary</a>
+            <a href="#hindi">Hindi channels</a>
+            <a href="#roadmap">Roadmap</a>        </div>
+    </div>
+</div>
+
+<header class="hero">
+    <div class="wrap">
+        <span class="tag"><svg class="ic"><use href="#i-rocket"/></svg>Web Developers ke liye</span>
+        <h1>Generative AI <em>Roadmap</em></h1>
+        <p>Basic se production tak. Har topic ke saath free videos, docs aur courses, aur wo skills jo aaj kal job requirements mein actually maange jaate hain.</p>
+        <div class="stats">
+            <div class="stat"><b>10</b> stages</div>
+            <div class="stat"><b>45+</b> topics</div>
+            <div class="stat"><b>100+</b> free resources</div>
+            <div class="stat"><b>~6&ndash;8</b> months (1&ndash;2 hr/day)</div>
+        </div>
+    </div>
+</header>
+
+<main class="wrap">
+
+    <!-- ===== JOB MARKET ===== -->
+    <section class="block" id="jobs">
+        <h2><svg class="ic"><use href="#i-briefcase"/></svg>Job market: companies kya maangti hain?</h2>
+        <p class="sub">Neeche ki list kai hiring guides aur salary reports ka common pattern hai. Ye trend signal hai, official data nahi. Apne target jobs Naukri / LinkedIn par khud bhi check karo.</p>
+
+        <div class="grid">
+            <div class="card">
+                <h3 style="margin-bottom:14px">Skills priority (job ads mein kitni baar aati hain)</h3>
+                <div id="skills"></div>
+            </div>
+            <div class="card">
+                <h3 style="margin-bottom:10px">Typical role titles</h3>
+                <div class="chips" style="margin-bottom:18px">
+                    <span class="chip">GenAI Engineer</span><span class="chip">AI Application Developer</span><span class="chip">LLM Engineer</span>
+                    <span class="chip">AI Engineer</span><span class="chip">Full-Stack AI Engineer</span><span class="chip">Agentic AI Developer</span>
+                    <span class="chip">AI Automation Engineer</span><span class="chip">Prompt / Applied AI Engineer</span>
+                </div>
+                <h3 style="margin-bottom:10px">Job kahan dhundhein</h3>
+                <div class="chips">
+                    <a class="chip" href="https://www.naukri.com" target="_blank" rel="noopener">Naukri</a>
+                    <a class="chip" href="https://www.linkedin.com/jobs" target="_blank" rel="noopener">LinkedIn Jobs</a>
+                    <a class="chip" href="https://wellfound.com" target="_blank" rel="noopener">Wellfound (startups)</a>
+                    <a class="chip" href="https://www.instahyre.com" target="_blank" rel="noopener">Instahyre</a>
+                    <a class="chip" href="https://cutshort.io" target="_blank" rel="noopener">Cutshort</a>
+                    <a class="chip" href="https://www.upwork.com" target="_blank" rel="noopener">Upwork (freelance)</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+            <h3 style="margin-bottom:12px"><svg class="ic"><use href="#i-rupee"/></svg>India salary range (approx. LPA)</h3>
+            <div class="tablewrap">
+                <table>
+                    <thead><tr><th>Level</th><th>Experience</th><th>Package</th><th>Kya chahiye</th></tr></thead>
+                    <tbody>
+                        <tr><td>Fresher (IT services)</td><td>0&ndash;1 yr</td><td class="sal">₹6 &ndash; 9 LPA</td><td>Python, basics, projects</td></tr>
+                        <tr><td>Fresher (product / startup) with GenAI projects</td><td>0&ndash;2 yrs</td><td class="sal">₹8 &ndash; 15 LPA</td><td>Deployed RAG / agent projects on GitHub</td></tr>
+                        <tr><td>Mid-level</td><td>3&ndash;6 yrs</td><td class="sal">₹12 &ndash; 25 LPA</td><td>Production RAG, evals, cloud</td></tr>
+                        <tr><td>Specialist (RAG / agents)</td><td>5+ yrs</td><td class="sal">₹25 &ndash; 50 LPA</td><td>System design, scale, cost optimization</td></tr>
+                        <tr><td>Senior at product companies</td><td>7+ yrs</td><td class="sal">₹35 &ndash; 60 LPA</td><td>Architecture, leading teams</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p style="font-size:.82rem;color:var(--muted);margin-top:12px">
+                Figures blog / course-provider estimates hain aur sources ke beech kaafi vary karte hain. Company type ka bada farq padta hai: same experience par IT services aur product companies ke beech 60&ndash;150% tak gap bataya gaya hai.
+                Sources:
+                <a href="https://www.weekday.works/post/ai-engineer-salary-in-india-2026" target="_blank" rel="noopener">Weekday</a>,
+                <a href="https://www.masaischool.com/blog/ai-engineer-salary-in-india-2026-fresher-to-10-years-experience/" target="_blank" rel="noopener">Masai School</a>,
+                <a href="https://www.itm.edu/blog/ai-engineer-salary-in-india/" target="_blank" rel="noopener">ITM</a>.
+            </p>
+        </div>
+
+        <div class="grid" style="margin-top:16px">
+            <div class="card">
+                <h3 style="margin-bottom:10px"><svg class="ic" style="color:var(--green)"><use href="#i-check"/></svg>Aapka (web dev) advantage</h3>
+                <ul class="plain">
+                    <li>Zyada tar AI hires Python wale hote hain jinhe frontend / API / deployment nahi aata. Aap <b>React/Next.js + Node + API + deploy</b> jaante ho, to "Full-Stack AI Engineer" role aapke liye natural hai.</li>
+                    <li>AI products (chatbots, copilots, dashboards) ka 70% kaam normal web dev hi hai: streaming UI, auth, DB, billing.</li>
+                    <li>Freelancing mein aap seedha client ko poora product bech sakte ho.</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h3 style="margin-bottom:10px"><svg class="ic" style="color:var(--amber)"><use href="#i-alert"/></svg>Package badhane wali baatein</h3>
+                <ul class="plain">
+                    <li>Sirf "LangChain, RAG" resume par likhna kaafi nahi. Ye exposure dikhata hai, competence nahi. <b>Deployed project + evals + metrics</b> dikhao.</li>
+                    <li><b>Evals</b> sabse underrated skill hai. "Maine 50 test questions banaye, accuracy 62% se 84% ki" jaisi line interviewer ko impress karti hai.</li>
+                    <li>Cost, latency aur monitoring ki baat karo. Production sense hi junior aur strong candidate mein farq hai.</li>
+                    <li>DSA basic + SQL bhi taiyaar rakho, kai companies ye bhi poochti hain.</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card" style="margin-top:16px">
+            <h3 style="margin-bottom:10px"><svg class="ic"><use href="#i-mic"/></svg>Interview mein aksar puchhe jaane wale topics</h3>
+            <div class="chips">
+                <span class="chip">RAG pipeline kaise design karoge?</span>
+                <span class="chip">Chunking strategy &amp; overlap</span>
+                <span class="chip">Hybrid search vs vector search</span>
+                <span class="chip">Hallucination kaise kam karte ho?</span>
+                <span class="chip">RAG ko evaluate kaise karoge?</span>
+                <span class="chip">Fine-tuning vs RAG vs prompting</span>
+                <span class="chip">Agent loop &amp; tool calling</span>
+                <span class="chip">Prompt injection se bachav</span>
+                <span class="chip">Cost &amp; latency optimize karna</span>
+                <span class="chip">Context window limits</span>
+                <span class="chip">Async Python / FastAPI</span>
+                <span class="chip">Streaming responses</span>
+                <span class="chip">Embeddings kya hain</span>
+                <span class="chip">Python coding round + SQL</span>
+            </div>
+            <p style="font-size:.82rem;color:var(--muted);margin-top:12px">Trend sources:
+                <a href="https://www.mygreatlearning.com/blog/the-complete-ai-agent-engineer-skills-stack-you-need-in-2026/" target="_blank" rel="noopener">Great Learning</a>,
+                <a href="https://letsdatascience.com/blog/ai-engineer-roadmap-2026-skills-tools-and-career-path" target="_blank" rel="noopener">LetsDataScience</a>,
+                <a href="https://www.groovyweb.co/blog/what-does-an-ai-engineer-do-skills-salary-2026" target="_blank" rel="noopener">GroovyWeb</a>.
+            </p>
+        </div>
+    </section>
+
+    <!-- ===== HOW TO STUDY ===== -->
+    <section class="block" id="how">
+        <h2><svg class="ic"><use href="#i-compass"/></svg>Kaise padhna hai (study method)</h2>
+        <p class="sub">Sirf videos dekhne se job nahi milti. Ye formula follow karo.</p>
+        <div class="grid">
+            <div class="card"><h3>1. 30% dekho, 70% banao</h3><p style="font-size:.92rem;margin-top:6px">Ek concept video/doc se samjho, phir turant code mein implement karo. Tutorial hell se bachne ka ek hi tareeka hai.</p></div>
+            <div class="card"><h3>2. Ek time par ek stage</h3><p style="font-size:.92rem;margin-top:6px">Stage khatam karo, uska project GitHub par daalo, tabhi agle stage par jao. Skip mat karo.</p></div>
+            <div class="card"><h3>3. Docs padhne ki aadat</h3><p style="font-size:.92rem;margin-top:6px">Official docs (Anthropic, OpenAI, LangGraph) sabse updated hote hain. YouTube se idea lo, docs se seekho.</p></div>
+            <div class="card"><h3>4. Public mein seekho</h3><p style="font-size:.92rem;margin-top:6px">Har project par LinkedIn post / README likho: problem, architecture, demo GIF. Recruiters yahin se dekhte hain.</p></div>
+            <div class="card"><h3>5. Daily routine</h3><p style="font-size:.92rem;margin-top:6px">1 ghanta concept + 1 ghanta build. Weekend par 4 ghante project. Roz 1 chhota commit karo.</p></div>
+            <div class="card"><h3>6. Doubt kahan poochein</h3>
+                <div class="chips" style="margin-top:8px">
+                    <a class="chip" href="https://discord.gg/langchain" target="_blank" rel="noopener">LangChain Discord</a>
+                    <a class="chip" href="https://huggingface.co/join/discord" target="_blank" rel="noopener">HF Discord</a>
+                    <a class="chip" href="https://www.reddit.com/r/LocalLLaMA/" target="_blank" rel="noopener">r/LocalLLaMA</a>
+                    <a class="chip" href="https://stackoverflow.com" target="_blank" rel="noopener">StackOverflow</a>
+                </div>
+            </div>
+        </div>
+        <div class="callout g"><b>Hindi mein seekhna ho to:</b> neeche har stage mein "Hindi" tag wale links YouTube search results par le jaate hain (CampusX, Krish Naik, CodeWithHarry, Chai aur Code jaise creators). Concept Hindi mein samjho, lekin docs English mein hi padho, job mein wahi kaam aata hai.</div>
+    </section>
+
+    <!-- ===== START HERE ===== -->
+    <section class="block" id="start">
+        <h2><svg class="ic"><use href="#i-flag"/></svg>Yahan se shuru karo (is page ko kaise use karein)</h2>
+        <p class="sub">Pehli baar aaye ho to ye 6 steps follow karo. Baaki sab neeche detail mein hai.</p>
+        <div class="card">
+            <ol class="start">
+                <li><b>Stage 0 se shuru karo</b> aur order mein chalo. Skip mat karo, har stage pichhle par tika hai.</li>
+                <li>Har stage mein pehle <b>"Is stage ko kaise karein"</b> box padho. Usme order aur end result likha hai.</li>
+                <li>Phir har topic ke liye pehle <b>Kya karna hai</b> padho, uske baad resource kholo. Pehle kaam samjho, phir video dekho.</li>
+                <li><b>Hindi mein seekhna ho</b> to topic ke neeche green <span class="k hindi" style="font-size:.7rem;padding:1px 8px;border-radius:99px">HINDI</span> links use karo ya upar filter se "Hindi" chuno. Ye seedha Hindi playlists / channels par le jaate hain.</li>
+                <li>Topic complete hone par <b>checkbox tick</b> karo. Upar progress bar badhegi.</li>
+                <li>Stage ke end ka <b>project zaroor banao</b> aur GitHub par daalo. Bina project ke stage complete nahi mana jayega.</li>
+            </ol>
+            <div class="callout g"><b>Hindi + English ka mix:</b> concept Hindi mein samjho (jaldi samajh aata hai), lekin docs English mein hi padho. Job mein docs hi kaam aate hain aur Hindi tutorials purane ho sakte hain (AI tez badalta hai).</div>
+        </div>
+    </section>
+
+    <!-- ===== HINDI CHANNELS ===== -->
+    <section class="block" id="hindi">
+        <h2><span class="hi" style="color:var(--accent)">अ</span>Hindi YouTube channels: kaun kis cheez ke liye</h2>
+        <p class="sub">Neeche ke cards channel ke <b>Playlists page</b> par le jaate hain. Wahan topic ka naam (jaise "LangChain", "Python") dhundho. Har topic ke neeche bhi ye links diye hain. Playlist ki date dekh lena: 2025&ndash;26 ki series chuno, bahut purani nahi.</p>
+        <div class="grid">
+            <a class="ch-card" href="https://www.youtube.com/@campusx-official/playlists" target="_blank" rel="noopener"><h3>CampusX</h3><p>ML, Deep Learning aur GenAI ki gehri Hindi series. Concept clear karne ke liye best.</p><span>Playlists dekho →</span></a>
+            <a class="ch-card" href="https://www.youtube.com/@krishnaikhindi/playlists" target="_blank" rel="noopener"><h3>Krish Naik Hindi</h3><p>LangChain, GenAI, RAG, MLOps. Practical coding wale tutorials.</p><span>Playlists dekho →</span></a>
+            <a class="ch-card" href="https://www.youtube.com/@chaiaurcode/playlists" target="_blank" rel="noopener"><h3>Chai aur Code</h3><p>Python, JavaScript aur GenAI ki cohort-style series. Web dev ke liye achha fit.</p><span>Playlists dekho →</span></a>
+            <a class="ch-card" href="https://www.youtube.com/@CodeWithHarry/playlists" target="_blank" rel="noopener"><h3>CodeWithHarry</h3><p>Python, Git aur programming basics, bilkul aasan Hindi mein.</p><span>Playlists dekho →</span></a>
+            <a class="ch-card" href="https://www.youtube.com/@piyushgargdev/playlists" target="_blank" rel="noopener"><h3>Piyush Garg</h3><p>Backend, Docker aur AI projects. Full-stack developers ke liye.</p><span>Playlists dekho →</span></a>
+            <a class="ch-card" href="https://www.youtube.com/@WsCubeTech/playlists" target="_blank" rel="noopener"><h3>WsCube Tech</h3><p>Python, SQL, Docker, cloud ke basics, Hindi mein.</p><span>Playlists dekho →</span></a>
+            <a class="ch-card" href="https://www.youtube.com/@ApnaCollegeOfficial/playlists" target="_blank" rel="noopener"><h3>Apna College</h3><p>DSA aur placement / interview preparation.</p><span>Playlists dekho →</span></a>
+        </div>
+        <div class="callout a"><b>Dhyan do:</b> YouTube ki playlists badalti rehti hain, isliye main kisi ek playlist ka fixed link nahi de sakta. Channel ka Playlists page hamesha latest dikhata hai. Har topic ke neeche "Hindi PLAYLISTS" wala link YouTube ko sirf playlists dikhane ka filter lagake khulta hai.</div>
+    </section>
+
+    <!-- ===== ROADMAP ===== -->
+    <section class="block" id="roadmap">
+        <h2><svg class="ic"><use href="#i-map"/></svg>Step-by-step Roadmap</h2>
+        <p class="sub">Topic ke aage checkbox tick karte jao. Resource type filter se sirf video, docs ya Hindi resources dekh sakte ho.</p>
+
+        <div class="filters" id="filters">
+            <span>Dikhao:</span>
+            <button class="fbtn on" data-f="all">Sab</button>
+            <button class="fbtn" data-f="video"><svg class="ic"><use href="#i-play"/></svg>Video</button>
+            <button class="fbtn" data-f="docs"><svg class="ic"><use href="#i-file"/></svg>Docs</button>
+            <button class="fbtn" data-f="course"><svg class="ic"><use href="#i-cap"/></svg>Course</button>
+            <button class="fbtn" data-f="hindi"><span class="hi">अ</span>Hindi</button>
+            <button class="fbtn" data-f="tool"><svg class="ic"><use href="#i-wrench"/></svg>Tool</button>
+        </div>
+
+        <div class="layout">
+            <nav class="side" id="side"></nav>
+            <div id="stages"></div>
+        </div>
+    </section>
+
+    <!-- ===== PLAN ===== -->
+    <section class="block" id="plan">
+        <h2><svg class="ic"><use href="#i-calendar"/></svg>Fast-track plan (web developer ke liye)</h2>
+        <p class="sub">Agar job jaldi chahiye to ye order follow karo. Stage 6 aur 7 baad mein bhi kar sakte ho.</p>
+        <div class="grid">
+            <div class="card"><h3>Month 1</h3><p style="font-size:.92rem;margin-top:6px">Stage 0&ndash;2: Python, LLM concepts, prompting. Pehla chatbot (Stage 3 shuru).</p></div>
+            <div class="card"><h3>Month 2&ndash;3</h3><p style="font-size:.92rem;margin-top:6px">Stage 3&ndash;4: Streaming apps + RAG. "Chat with PDF" deploy karo. Portfolio mein chatbot lagao.</p></div>
+            <div class="card"><h3>Month 4&ndash;5</h3><p style="font-size:.92rem;margin-top:6px">Stage 5 + 8: Agents, MCP, evals, Docker, deployment. 2 solid projects ship karo.</p></div>
+            <div class="card"><h3>Month 6+</h3><p style="font-size:.92rem;margin-top:6px">Capstone SaaS + resume + applications. Freelancing parallel shuru karo. Stage 6&ndash;7 jaroorat ke hisaab se.</p></div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div>Banaya gaya Shubham Tyagi ke liye &middot; Progress aapke browser mein save hota hai.</div>
+    <div style="margin-top:6px">Links badal sakte hain. Koi link na khule to resource ka naam Google / YouTube par search kar lo.</div>
+    <button class="reset" id="reset" type="button">Progress reset karo</button>
+</footer>
+
+<script>
+(function () {
+    // -------- data --------
+    var YT = function (q) { return 'https://www.youtube.com/results?search_query=' + encodeURIComponent(q); };
+
+    var SKILLS = [
+        ['Python', 100, 'must'], ['LLM APIs (Claude/OpenAI/Gemini)', 96, 'must'], ['RAG + Vector DB', 94, 'must'],
+        ['Prompt engineering', 85, 'must'], ['Agents (LangGraph etc.)', 82, 'high'], ['Evals &amp; testing', 78, 'high'],
+        ['FastAPI / REST APIs', 76, 'high'], ['Docker + Cloud', 70, 'high'], ['MCP / tool use', 66, 'high'],
+        ['SQL + Git', 64, 'high'], ['Fine-tuning (LoRA)', 40, 'good'], ['Multimodal (image/voice)', 34, 'good']
+    ];
+
+    var STAGES = [
+    {
+        title: 'Foundations: Python, APIs, Git', time: '2&ndash;3 weeks', level: 'Beginner',
+        goal: 'AI tools use karne ke liye zaroori basics. JS aati hai to Python jaldi seekh loge.',
+        why: '<b>Job mein:</b> Python lagbhag har GenAI job ad mein hai. Isko skip nahi kar sakte.',
+        topics: [
+            { n: 'Python basics', d: 'Variables, functions, classes, comprehensions, file handling, error handling.', r: [
+                ['course', 'CS50P: Intro to Programming with Python (Harvard)', 'https://cs50.harvard.edu/python/', 'free course'],
+                ['docs', 'Official Python Tutorial', 'https://docs.python.org/3/tutorial/', ''],
+                ['hindi', 'Python in Hindi (CodeWithHarry, Telusko etc.)', YT('python full course hindi'), 'YouTube search'] ] },
+            { n: 'Virtual env, pip, .env', d: 'Dependencies manage karna, API keys ko .env mein rakhna.', r: [
+                ['docs', 'Python venv guide', 'https://docs.python.org/3/tutorial/venv.html', ''],
+                ['docs', 'python-dotenv', 'https://pypi.org/project/python-dotenv/', ''] ] },
+            { n: 'Async Python + HTTP requests', d: 'async/await, httpx, JSON handling. LLM streaming isi par chalti hai.', r: [
+                ['docs', 'Python asyncio docs', 'https://docs.python.org/3/library/asyncio.html', ''],
+                ['docs', 'HTTPX', 'https://www.python-httpx.org/', ''],
+                ['video', 'Async Python tutorials', YT('python asyncio tutorial'), 'YouTube search'] ] },
+            { n: 'FastAPI backend', d: 'Routes, validation (Pydantic), streaming responses, CORS.', r: [
+                ['docs', 'FastAPI Tutorial (official)', 'https://fastapi.tiangolo.com/tutorial/', 'best resource'],
+                ['hindi', 'FastAPI in Hindi', YT('fastapi tutorial hindi'), 'YouTube search'] ] },
+            { n: 'Git / GitHub', d: 'Branches, PRs, README. Aapko aati hai, bas revise karo.', r: [
+                ['docs', 'Pro Git book', 'https://git-scm.com/book/en/v2', 'free'] ] },
+            { n: 'SQL basics + Math intuition', d: 'SELECT/JOIN (interview ke liye), vectors &amp; probability ka concept.', r: [
+                ['course', 'SQLBolt (interactive)', 'https://sqlbolt.com/', ''],
+                ['video', '3Blue1Brown: Essence of Linear Algebra', 'https://www.3blue1brown.com/topics/linear-algebra', 'sirf intuition'] ] }
+        ],
+        project: '<b>Mini project:</b> FastAPI mein <code>/weather</code> API banao jo kisi public API ko call kare, async ke saath.',
+        job: '<b>Resume line:</b> "Built async REST APIs with FastAPI and Pydantic".'
+    },
+    {
+        title: 'AI / ML / Deep Learning ka Big Picture', time: '1&ndash;2 weeks', level: 'Beginner',
+        goal: 'Samajhna ki Gen AI kahan fit hota hai. Sirf concepts, heavy math nahi.',
+        why: '<b>Job mein:</b> Interview mein basics puchhe jaate hain (embeddings, transformers, training vs inference). Deep math zyadatar research roles ke liye hai.',
+        topics: [
+            { n: 'AI vs ML vs DL vs Generative AI', d: 'Terminology clear karo.', r: [
+                ['course', 'Google ML Crash Course', 'https://developers.google.com/machine-learning/crash-course', 'free'],
+                ['course', 'Elements of AI', 'https://www.elementsofai.com/', 'free, non-technical'] ] },
+            { n: 'Neural networks intuition', d: 'Neurons, weights, loss, backprop. Visual samajh kaafi hai.', r: [
+                ['video', '3Blue1Brown: Neural Networks series', 'https://www.3blue1brown.com/topics/neural-networks', 'must watch'],
+                ['hindi', 'CampusX: Deep Learning (Hindi)', YT('campusx deep learning playlist'), 'YouTube search'] ] },
+            { n: 'Transformers &amp; attention', d: 'LLM ka core architecture, high-level.', r: [
+                ['docs', 'The Illustrated Transformer (Jay Alammar)', 'https://jalammar.github.io/illustrated-transformer/', ''],
+                ['video', 'Karpathy: Intro to Large Language Models', 'https://www.youtube.com/watch?v=zjkBMFhNj_g', '1 hr'] ] },
+            { n: 'Karpathy Deep Dive: ChatGPT kaise bana', d: 'Pretraining, fine-tuning, RLHF, hallucination ko achhe se samjhao.', r: [
+                ['video', 'Deep Dive into LLMs like ChatGPT', 'https://www.youtube.com/watch?v=7xTGNNLPyMI', '3+ hrs'] ] },
+            { n: 'Training vs inference, overfitting', d: 'Model kaise seekhta hai aur deploy hota hai.', r: [
+                ['course', 'Hugging Face LLM Course (intro chapters)', 'https://huggingface.co/learn/llm-course', 'free'] ] }
+        ],
+        project: '<b>Mini project:</b> "LLM kaise kaam karta hai" par apni bhasha mein 1-page blog / LinkedIn post likho. Samjha paana hi asli understanding hai.',
+        job: '<b>Interview tip:</b> "Transformer kya hai?" ka 2 minute ka saaf jawab practice karo.'
+    },
+    {
+        title: 'LLM Fundamentals &amp; Prompt Engineering', time: '2 weeks', level: 'Beginner',
+        goal: 'LLM ko sahi tarah se "baat" karna aur uski limits samajhna.',
+        why: '<b>Job mein:</b> Har AI role mein chahiye. Structured output aur prompt design interview ka common hissa hai.',
+        topics: [
+            { n: 'Tokens, context window, parameters', d: 'Token kya hote hain, temperature/top_p ka asar, max_tokens.', r: [
+                ['tool', 'OpenAI Tokenizer (try karo)', 'https://platform.openai.com/tokenizer', ''],
+                ['docs', 'Anthropic: Messages API overview', 'https://docs.anthropic.com/en/api/messages', ''] ] },
+            { n: 'Prompt engineering techniques', d: 'Zero/few-shot, chain-of-thought, role prompting, XML tags.', r: [
+                ['docs', 'Anthropic Prompt Engineering guide', 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview', 'best'],
+                ['docs', 'OpenAI Prompt Engineering guide', 'https://platform.openai.com/docs/guides/prompt-engineering', ''],
+                ['docs', 'Prompting Guide (promptingguide.ai)', 'https://www.promptingguide.ai/', 'free'],
+                ['course', 'Anthropic interactive prompt tutorial (GitHub)', 'https://github.com/anthropics/prompt-eng-interactive-tutorial', 'hands-on'] ] },
+            { n: 'Structured outputs (JSON)', d: 'LLM se reliable JSON nikalna, schema validation.', r: [
+                ['docs', 'OpenAI Structured Outputs', 'https://platform.openai.com/docs/guides/structured-outputs', ''],
+                ['docs', 'Pydantic', 'https://docs.pydantic.dev/', 'Python validation'] ] },
+            { n: 'Hallucination &amp; limitations', d: 'Kyun galat jawab deta hai, kaise reduce karein (grounding, citations).', r: [
+                ['docs', 'Anthropic: Reduce hallucinations', 'https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/reduce-hallucinations', ''] ] },
+            { n: 'Model families &amp; kab kaunsa use karein', d: 'Claude, GPT, Gemini, Llama, Mistral: speed vs cost vs quality.', r: [
+                ['tool', 'LMArena leaderboard', 'https://lmarena.ai/', ''],
+                ['course', 'DeepLearning.AI Short Courses', 'https://www.deeplearning.ai/short-courses/', 'free, 1 hr each'] ] }
+        ],
+        project: '<b>Project 1:</b> "Resume Improver": ek prompt jo resume text le kar structured JSON feedback de (score, strengths, fixes).',
+        job: '<b>Resume line:</b> "Designed prompts with few-shot examples and JSON schema outputs, reducing format errors to near zero".'
+    },
+    {
+        title: 'LLM APIs ke saath Apps Banana', time: '3 weeks', level: 'Beginner &rarr; Intermediate',
+        goal: 'Yahan aapki web dev skill kaam aati hai. Real chat apps banao: frontend + backend.',
+        why: '<b>Job mein:</b> "LLM API integration" sabse common requirement hai. Streaming UI + tool calling dikhana bada plus hai.',
+        topics: [
+            { n: 'Claude / OpenAI / Gemini SDKs', d: 'Python aur JS dono mein. System prompt, messages, errors.', r: [
+                ['docs', 'Anthropic API docs', 'https://docs.anthropic.com/', ''],
+                ['docs', 'OpenAI API docs', 'https://platform.openai.com/docs', ''],
+                ['docs', 'Google Gemini API docs', 'https://ai.google.dev/gemini-api/docs', 'generous free tier'],
+                ['course', 'Anthropic Courses (GitHub)', 'https://github.com/anthropics/courses', 'free'] ] },
+            { n: 'Streaming responses (SSE) + chat UI', d: 'Typing effect frontend par, FastAPI StreamingResponse.', r: [
+                ['docs', 'Vercel AI SDK', 'https://ai-sdk.dev/docs', 'React / Next.js'],
+                ['docs', 'MDN: Server-sent events', 'https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events', ''],
+                ['video', 'Build AI chatbot with Next.js', YT('vercel ai sdk next.js chatbot tutorial'), 'YouTube search'] ] },
+            { n: 'Conversation memory', d: 'History trim/summarize karna, context window manage karna.', r: [
+                ['docs', 'Anthropic: Prompt caching', 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching', 'cost kam'] ] },
+            { n: 'Function calling / tool use', d: 'LLM ko functions dena (weather, DB query, API call).', r: [
+                ['docs', 'Anthropic: Tool use', 'https://docs.anthropic.com/en/docs/build-with-claude/tool-use/overview', ''],
+                ['docs', 'OpenAI: Function calling', 'https://platform.openai.com/docs/guides/function-calling', ''] ] },
+            { n: 'Errors, retries, rate limits, cost tracking', d: 'Production ready banane ki aadat.', r: [
+                ['docs', 'Anthropic Cookbook', 'https://github.com/anthropics/anthropic-cookbook', 'code examples'],
+                ['docs', 'OpenAI Cookbook', 'https://cookbook.openai.com/', 'code examples'] ] },
+            { n: 'Security: API key backend mein', d: 'Key kabhi frontend mein nahi, proxy route banao + rate limit.', r: [
+                ['docs', 'OWASP Top 10 for LLM Apps', 'https://genai.owasp.org/llm-top-10/', ''] ] }
+        ],
+        project: '<b>Project 2:</b> Streaming AI chatbot (HTML/JS ya Next.js + FastAPI). <br><b>Project 3:</b> Apne portfolio mein "Ask about Shubham" chatbot jo aapke projects ke baare mein jawab de. <i>(Portfolio ke liye perfect!)</i>',
+        job: '<b>Resume line:</b> "Built streaming LLM chat application with tool calling, deployed on Vercel/Railway".'
+    },
+    {
+        title: 'RAG: Apne Data par AI', time: '3&ndash;4 weeks', level: 'Intermediate',
+        goal: 'Sabse zyada demand wali skill. PDFs, docs, websites par Q&amp;A system banana.',
+        why: '<b>Job mein:</b> RAG lagbhag har enterprise AI job ka core hai. Chunking, hybrid search, reranking aur evaluation par sawal aate hain.',
+        topics: [
+            { n: 'Embeddings &amp; semantic search', d: 'Text ko vectors mein badalna, cosine similarity.', r: [
+                ['docs', 'OpenAI Embeddings guide', 'https://platform.openai.com/docs/guides/embeddings', ''],
+                ['docs', 'Sentence Transformers', 'https://www.sbert.net/', 'free local embeddings'],
+                ['course', 'DeepLearning.AI: Embedding Models', 'https://www.deeplearning.ai/short-courses/', 'short course'] ] },
+            { n: 'Vector databases', d: 'Chroma / FAISS (start), Qdrant, Pinecone, pgvector (production).', r: [
+                ['docs', 'Chroma docs', 'https://docs.trychroma.com/', 'easy start'],
+                ['docs', 'Qdrant docs', 'https://qdrant.tech/documentation/', ''],
+                ['docs', 'pgvector (Postgres)', 'https://github.com/pgvector/pgvector', 'job mein common'],
+                ['docs', 'Pinecone Learning Center', 'https://www.pinecone.io/learn/', 'free guides'] ] },
+            { n: 'Document loading &amp; chunking', d: 'PDF/HTML parsing, chunk size, overlap, metadata.', r: [
+                ['docs', 'LangChain text splitters', 'https://python.langchain.com/docs/concepts/text_splitters/', ''],
+                ['video', 'RAG chunking strategies', YT('rag chunking strategies explained'), 'YouTube search'] ] },
+            { n: 'Full RAG pipeline', d: 'Query &rarr; retrieve &rarr; augment &rarr; generate. Pehle bina framework banao, phir framework.', r: [
+                ['docs', 'LangChain RAG tutorial', 'https://python.langchain.com/docs/tutorials/rag/', ''],
+                ['docs', 'LlamaIndex docs', 'https://docs.llamaindex.ai/', ''],
+                ['hindi', 'RAG tutorial in Hindi', YT('RAG tutorial hindi langchain'), 'YouTube search'],
+                ['video', 'freeCodeCamp RAG courses', YT('freecodecamp rag from scratch'), 'YouTube search'] ] },
+            { n: 'Hybrid search &amp; reranking', d: 'BM25 + vector search, cross-encoder reranker. Accuracy yahin badhti hai.', r: [
+                ['docs', 'Cohere Rerank docs', 'https://docs.cohere.com/docs/rerank', ''],
+                ['docs', 'Anthropic: Contextual Retrieval', 'https://www.anthropic.com/news/contextual-retrieval', 'must read'] ] },
+            { n: 'RAG evaluation', d: 'Faithfulness, relevance, retrieval recall. Test set banana.', r: [
+                ['docs', 'Ragas docs', 'https://docs.ragas.io/', ''],
+                ['docs', 'Hamel Husain: Your AI product needs evals', 'https://hamel.dev/blog/posts/evals/', 'must read'] ] }
+        ],
+        project: '<b>Project 4:</b> "Chat with PDF" with citations. <br><b>Project 5:</b> Kisi website / docs ka support bot jo sources cite kare aur "pata nahi" bole jab jawab na mile. <i>(Client ko bhi bech sakte ho!)</i>',
+        job: '<b>Resume line:</b> "Built production RAG with hybrid search and reranking; improved answer accuracy from X% to Y% on a 50-question eval set". Numbers zaroor daalo.'
+    },
+    {
+        title: 'AI Agents, MCP &amp; Automation', time: '4 weeks', level: 'Intermediate &rarr; Advanced',
+        goal: 'AI sirf jawab na de, kaam kare: tools call kare, decisions le, multi-step tasks poore kare.',
+        why: '<b>Job mein:</b> "Agentic AI" 2026 ka hot keyword hai. LangGraph aur MCP job descriptions mein tezi se aa rahe hain, aur ye high-paying roles ka rasta hai.',
+        topics: [
+            { n: 'Agent basics (ReAct loop)', d: 'Think &rarr; act &rarr; observe. Kab agent chahiye aur kab simple workflow.', r: [
+                ['docs', 'Anthropic: Building Effective Agents', 'https://www.anthropic.com/engineering/building-effective-agents', 'must read'],
+                ['course', 'Hugging Face Agents Course', 'https://huggingface.co/learn/agents-course', 'free'] ] },
+            { n: 'LangGraph', d: 'Stateful, controllable agents. Job ads mein sabse zyada naam.', r: [
+                ['docs', 'LangGraph docs', 'https://langchain-ai.github.io/langgraph/', ''],
+                ['course', 'LangChain Academy (free)', 'https://academy.langchain.com/', ''],
+                ['video', 'LangGraph tutorials', YT('langgraph tutorial full course'), 'YouTube search'] ] },
+            { n: 'MCP (Model Context Protocol)', d: 'Tools ko AI se connect karne ka standard. Apna MCP server banao.', r: [
+                ['docs', 'modelcontextprotocol.io', 'https://modelcontextprotocol.io/', 'official'],
+                ['course', 'Hugging Face MCP Course', 'https://huggingface.co/learn/mcp-course', 'free'],
+                ['docs', 'MCP Python SDK', 'https://github.com/modelcontextprotocol/python-sdk', ''] ] },
+            { n: 'Claude Agent SDK / CrewAI / AutoGen', d: 'Dusre frameworks se comparison, taaki sahi tool chun sako.', r: [
+                ['docs', 'Claude Agent SDK', 'https://docs.claude.com/en/docs/agent-sdk/overview', ''],
+                ['docs', 'CrewAI docs', 'https://docs.crewai.com/', ''],
+                ['docs', 'AutoGen', 'https://microsoft.github.io/autogen/', ''] ] },
+            { n: 'Memory, planning &amp; multi-agent patterns', d: 'Orchestrator-worker, router, human-in-the-loop approvals.', r: [
+                ['docs', 'LangGraph: Multi-agent concepts', 'https://langchain-ai.github.io/langgraph/concepts/multi_agent/', ''] ] },
+            { n: 'No-code/low-code automation: n8n', d: 'Freelancing ke liye bahut kaam ka: WhatsApp bots, CRM automation, workflows.', r: [
+                ['docs', 'n8n docs', 'https://docs.n8n.io/', ''],
+                ['hindi', 'n8n AI automation Hindi', YT('n8n ai agent tutorial hindi'), 'YouTube search'] ] }
+        ],
+        project: '<b>Project 6:</b> Research agent jo web search karke cited report banaye (LangGraph). <br><b>Project 7:</b> Custom MCP server jo aapke portfolio / projects ka data expose kare.',
+        job: '<b>Resume line:</b> "Built multi-step agent with LangGraph and MCP tools, with human approval for sensitive actions".'
+    },
+    {
+        title: 'Open-source Models &amp; Fine-tuning', time: '3&ndash;4 weeks', level: 'Advanced (optional)',
+        goal: 'Local models chalana aur zarurat par customize karna. Pehle prompt + RAG se kaam chalao, FT last option hai.',
+        why: '<b>Job mein:</b> Zyadatar app-developer roles mein "good to have". ML Engineer roles mein zaroori. Privacy-focused companies local models chahti hain.',
+        topics: [
+            { n: 'Hugging Face ecosystem', d: 'Hub, Transformers, Datasets, Spaces.', r: [
+                ['course', 'Hugging Face LLM Course', 'https://huggingface.co/learn/llm-course', 'free'],
+                ['docs', 'Transformers docs', 'https://huggingface.co/docs/transformers', ''] ] },
+            { n: 'Run models locally', d: 'Ollama, LM Studio, llama.cpp. Quantization (GGUF, 4-bit) aur VRAM.', r: [
+                ['tool', 'Ollama', 'https://ollama.com/', 'easiest'],
+                ['tool', 'LM Studio', 'https://lmstudio.ai/', ''],
+                ['docs', 'llama.cpp', 'https://github.com/ggml-org/llama.cpp', ''] ] },
+            { n: 'PyTorch basics', d: 'Tensors, training loop. Itna kaafi: model train hone ka flow samajhna.', r: [
+                ['docs', 'PyTorch tutorials', 'https://pytorch.org/tutorials/', ''],
+                ['video', 'Karpathy: Neural Networks Zero to Hero', 'https://karpathy.ai/zero-to-hero.html', 'gold standard'] ] },
+            { n: 'Build GPT from scratch', d: 'Optional but deep understanding deta hai.', r: [
+                ['video', "Let's build GPT (Karpathy)", 'https://www.youtube.com/watch?v=kCc8FmEb1nY', '2 hrs'] ] },
+            { n: 'Fine-tuning: LoRA / QLoRA', d: 'Kab karna hai, dataset kaise banana hai, Unsloth / PEFT se.', r: [
+                ['docs', 'Unsloth docs', 'https://docs.unsloth.ai/', 'free Colab notebooks'],
+                ['docs', 'Hugging Face PEFT', 'https://huggingface.co/docs/peft', ''],
+                ['tool', 'Google Colab (free GPU)', 'https://colab.research.google.com/', ''] ] }
+        ],
+        project: '<b>Project 8:</b> Ollama par local chatbot, aur Colab mein ek chhote model (1&ndash;3B) ko LoRA se kisi specific task par fine-tune karo.',
+        job: '<b>Interview tip:</b> "Fine-tuning vs RAG vs prompting kab?" ka clear jawab taiyaar rakho.'
+    },
+    {
+        title: 'Multimodal: Image, Voice, Vision', time: '2&ndash;3 weeks', level: 'Intermediate',
+        goal: 'Text ke alawa image, voice aur video ko apps mein jodna.',
+        why: '<b>Job mein:</b> Bonus skill. Voice agents aur document-vision (OCR, invoices) ki demand badh rahi hai.',
+        topics: [
+            { n: 'Vision: image input / OCR / documents', d: 'Screenshots, invoices, forms se data nikalna.', r: [
+                ['docs', 'Anthropic: Vision', 'https://docs.anthropic.com/en/docs/build-with-claude/vision', ''],
+                ['docs', 'OpenAI: Images &amp; vision', 'https://platform.openai.com/docs/guides/images-vision', ''] ] },
+            { n: 'Image generation (diffusion)', d: 'Stable Diffusion, Flux, ComfyUI workflows.', r: [
+                ['docs', 'Hugging Face Diffusers', 'https://huggingface.co/docs/diffusers', ''],
+                ['docs', 'ComfyUI docs', 'https://docs.comfy.org/', ''],
+                ['course', 'HF Diffusion Models class', 'https://github.com/huggingface/diffusion-models-class', 'free'] ] },
+            { n: 'Speech: Whisper (STT) &amp; TTS', d: 'Voice to text, text to voice.', r: [
+                ['docs', 'OpenAI Whisper', 'https://github.com/openai/whisper', ''],
+                ['docs', 'ElevenLabs docs', 'https://elevenlabs.io/docs', ''] ] },
+            { n: 'Realtime voice agents', d: 'Low-latency voice assistants, phone bots.', r: [
+                ['docs', 'OpenAI Realtime API', 'https://platform.openai.com/docs/guides/realtime', ''],
+                ['docs', 'LiveKit Agents', 'https://docs.livekit.io/agents/', ''] ] }
+        ],
+        project: '<b>Project 9:</b> Image upload karke alt-text / invoice data nikalne wala tool, ya voice-enabled assistant.',
+        job: '<b>Freelance idea:</b> Clinics / shops ke liye WhatsApp + voice booking bots.'
+    },
+    {
+        title: 'Production: Evals, Safety, Deployment', time: '3 weeks', level: 'Advanced',
+        goal: 'Demo se real product tak. Yahi cheez junior aur professional AI developer mein farq banati hai, aur package bhi yahin se badhta hai.',
+        why: '<b>Job mein:</b> Evals, observability, cost control aur deployment ka experience wale candidates ko clear edge milta hai.',
+        topics: [
+            { n: 'Evals: test sets, LLM-as-judge, regression tests', d: 'Har prompt change ke baad quality measure karna.', r: [
+                ['docs', 'Hamel Husain: Evals', 'https://hamel.dev/blog/posts/evals/', ''],
+                ['tool', 'Promptfoo', 'https://www.promptfoo.dev/docs/intro', 'free eval tool'],
+                ['docs', 'Anthropic: Define success &amp; build evals', 'https://docs.anthropic.com/en/docs/test-and-evaluate/develop-tests', ''] ] },
+            { n: 'Observability &amp; tracing', d: 'Har request ka log, cost, latency dekhna.', r: [
+                ['docs', 'Langfuse (open-source)', 'https://langfuse.com/docs', ''],
+                ['docs', 'LangSmith', 'https://docs.smith.langchain.com/', ''] ] },
+            { n: 'Guardrails &amp; security', d: 'Prompt injection, PII, jailbreaks se bachav.', r: [
+                ['docs', 'OWASP Top 10 for LLM Applications', 'https://genai.owasp.org/llm-top-10/', ''],
+                ['docs', 'Anthropic: Strengthen guardrails', 'https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks', ''] ] },
+            { n: 'Cost &amp; latency optimization', d: 'Prompt caching, batching, chhote model se routing, streaming.', r: [
+                ['docs', 'Anthropic: Prompt caching', 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching', ''],
+                ['docs', 'Anthropic: Batch processing', 'https://docs.anthropic.com/en/docs/build-with-claude/batch-processing', ''] ] },
+            { n: 'Docker &amp; deployment', d: 'Containerize karke Railway / Render / AWS / Vercel par chalana.', r: [
+                ['docs', 'Docker Get Started', 'https://docs.docker.com/get-started/', ''],
+                ['docs', 'Railway docs', 'https://docs.railway.com/', ''],
+                ['hindi', 'Docker in Hindi', YT('docker tutorial hindi'), 'YouTube search'] ] },
+            { n: 'Cloud AI services (AWS / Azure / GCP)', d: 'Bedrock, Azure OpenAI, Vertex AI. Enterprise jobs mein common.', r: [
+                ['docs', 'Amazon Bedrock', 'https://docs.aws.amazon.com/bedrock/', ''],
+                ['docs', 'Azure OpenAI', 'https://learn.microsoft.com/azure/ai-services/openai/', ''],
+                ['docs', 'Vertex AI', 'https://cloud.google.com/vertex-ai/docs', ''] ] }
+        ],
+        project: '<b>Capstone:</b> Complete AI SaaS: login + RAG + agent + usage limits + tracing + eval dashboard + deployed on a custom domain. Ye aapka flagship portfolio project hoga.',
+        job: '<b>Resume line:</b> "Reduced LLM cost by X% using prompt caching and model routing; monitored with Langfuse".'
+    },
+    {
+        title: 'Career, Portfolio &amp; Freelancing', time: 'Ongoing', level: 'All levels',
+        goal: 'Skills ko kamai aur opportunities mein badalna.',
+        why: '<b>Job mein:</b> Projects + public proof &gt; certificates. Recruiters GitHub, live demo aur LinkedIn dekhte hain.',
+        topics: [
+            { n: 'Portfolio mein "AI Projects" section', d: 'Live demo + GitHub + architecture diagram + short demo video har project ka.', r: [
+                ['tool', 'Excalidraw (diagrams)', 'https://excalidraw.com/', ''],
+                ['tool', 'Hugging Face Spaces (free demo hosting)', 'https://huggingface.co/spaces', ''] ] },
+            { n: 'Resume &amp; LinkedIn optimization', d: 'Keywords: RAG, LLM, LangGraph, FastAPI, evals, Docker. Metrics ke saath.', r: [
+                ['video', 'AI engineer resume tips', YT('ai engineer resume tips 2026'), 'YouTube search'] ] },
+            { n: 'Open source &amp; hackathons', d: 'Kaggle, Devpost, MLH hackathons, LangChain / LlamaIndex mein chhote PRs.', r: [
+                ['tool', 'Devpost hackathons', 'https://devpost.com/hackathons', ''],
+                ['tool', 'Kaggle', 'https://www.kaggle.com/', ''] ] },
+            { n: 'Coding + system design interview prep', d: 'Python coding, SQL, aur "RAG system design karo" type sawal.', r: [
+                ['tool', 'LeetCode (Easy/Medium)', 'https://leetcode.com/', ''],
+                ['docs', 'Chip Huyen: AI Engineering', 'https://huyenchip.com/', 'blog + book'] ] },
+            { n: 'Freelancing', d: 'Chatbots, RAG support bots, n8n automation, WhatsApp AI bots local businesses ke liye.', r: [
+                ['tool', 'Upwork', 'https://www.upwork.com/', ''],
+                ['tool', 'Fiverr', 'https://www.fiverr.com/', ''],
+                ['tool', 'Contra', 'https://contra.com/', 'zero commission'] ] },
+            { n: 'Updated rehna', d: 'Naye models, papers aur tools ke liye weekly 1 ghanta.', r: [
+                ['docs', 'Anthropic Engineering blog', 'https://www.anthropic.com/engineering', ''],
+                ['docs', 'Latent Space (AI Engineer newsletter)', 'https://www.latent.space/', ''],
+                ['docs', 'Simon Willison blog', 'https://simonwillison.net/', ''],
+                ['tool', 'Hugging Face Daily Papers', 'https://huggingface.co/papers', ''] ] }
+        ],
+        project: '',
+        job: ''
+    }];
+
+    // -------- extra explanations + Hindi resources --------
+    // YouTube search filtered to PLAYLISTS only (sp=EgIQAw), so results are playlists, not single videos
+    var YTP = function (q) { return 'https://www.youtube.com/results?search_query=' + encodeURIComponent(q) + '&sp=EgIQAw%253D%253D'; };
+    var CH = {
+        CX:  ['CampusX', 'https://www.youtube.com/@campusx-official/playlists', 'ML/DL/GenAI ki gehri Hindi series'],
+        KN:  ['Krish Naik Hindi', 'https://www.youtube.com/@krishnaikhindi/playlists', 'LangChain, GenAI, MLOps'],
+        CWH: ['CodeWithHarry', 'https://www.youtube.com/@CodeWithHarry/playlists', 'Python, Git, web basics'],
+        CAC: ['Chai aur Code', 'https://www.youtube.com/@chaiaurcode/playlists', 'Python, JS, GenAI series'],
+        PG:  ['Piyush Garg', 'https://www.youtube.com/@piyushgargdev/playlists', 'Backend, Docker, AI projects'],
+        WS:  ['WsCube Tech', 'https://www.youtube.com/@WsCubeTech/playlists', 'Python, Docker, cloud basics'],
+        AC:  ['Apna College', 'https://www.youtube.com/@ApnaCollegeOfficial/playlists', 'DSA, placement prep']
+    };
+
+    // per stage: steps (kaise karein) + outcome (stage ke baad kya aana chahiye)
+    var SX = [
+        { steps: ['Pehle Python basics (1 hafta): roz 1 ghanta video + 1 ghanta khud code likho.', 'Phir virtual env + .env + requests: ek public API call karke JSON print karo.', 'Phir async/await samjho.', 'Phir FastAPI: 3 endpoints banao.', 'Aakhir mein mini project GitHub par push karo.'],
+          out: 'Aap Python mein API call kar paoge, FastAPI server bana paoge aur API keys .env mein safe rakh paoge.' },
+        { steps: ['3Blue1Brown ke neural network videos dekho (sirf samajhne ke liye).', 'Karpathy ka "Intro to LLMs" dekho (1 ghanta).', 'Illustrated Transformer padho.', 'Ek page ka summary apne shabdon mein likho.'],
+          out: 'Aap bata paoge ki LLM, token, embedding aur transformer kya hote hain. Interview ke basic sawal clear ho jayenge.' },
+        { steps: ['1 hafta Claude / ChatGPT / Gemini AI Studio mein prompt experiments karo.', 'Anthropic ki prompt guide padho, har technique ka ek example try karo.', 'JSON structured output seekho.', 'Resume Improver project banao.'],
+          out: 'Aap reliable prompts likh paoge jo har baar same format mein jawab dein, aur hallucination kam karna jaante honge.' },
+        { steps: ['Ek API (Gemini free ya Claude/OpenAI) se pehla script chalao.', 'Streaming jodo: backend se frontend tak chunk-by-chunk.', 'Memory (history) aur tool calling jodo.', 'Error handling + rate limit lagao.', 'Chatbot ko apne portfolio mein deploy karo.'],
+          out: 'Aap ek poora streaming chatbot bana aur deploy kar paoge, jisme tool calling bhi ho.' },
+        { steps: ['Embeddings aur similarity ka chhota experiment karo.', 'Chroma mein documents daalo, search karo.', 'Bina framework ke RAG pipeline khud likho, fir LangChain mein.', 'Hybrid search + reranking jodo.', '30 sawal ka test set banake accuracy naapo.'],
+          out: 'Aap PDF / website par accurate Q&A system bana paoge, citations ke saath, aur apni accuracy number mein bata paoge. Yahi interview mein sabse zyada puchha jaata hai.' },
+        { steps: ['Pehle "Building Effective Agents" article padho.', 'Ek simple agent loop khud likho (bina framework).', 'LangGraph seekho aur wahi agent uss mein banao.', 'Apna MCP server banao.', 'n8n par ek automation workflow banao.'],
+          out: 'Aap multi-step agents bana paoge jo tools use karein aur human approval le sakein, aur MCP server bhi bana paoge.' },
+        { steps: ['Ollama se ek local model chalao.', 'HF Hub se model download karke Python mein chalao.', 'Unsloth Colab notebook se chhota LoRA fine-tune karo.', 'Samjho kab fine-tune karna chahiye aur kab nahi.'],
+          out: 'Aap local models chala paoge aur fine-tuning ka basic flow samjhoge. Ye optional stage hai, jaldi job chahiye to baad mein karo.' },
+        { steps: ['Image input (vision) se document data nikalo.', 'Whisper + TTS se voice pipeline banao.', 'Image generation ek baar try karo.'],
+          out: 'Aap apni app mein image / voice features jod paoge. Ye bonus skill hai.' },
+        { steps: ['Apne RAG/chatbot ke liye eval test set banao (Promptfoo).', 'Langfuse se tracing lagao.', 'Prompt injection se bachav jodo.', 'Dockerize karke deploy karo.', 'Capstone SaaS banao: login + RAG + agent + limits.'],
+          out: 'Aapke paas ek production-style project hoga jisme evals, monitoring aur deployment ho. Yahi project aapka package badhata hai.' },
+        { steps: ['Portfolio mein AI Projects section banao.', 'Resume mein numbers ke saath projects likho.', 'LinkedIn par har project ki post daalo.', 'Roz thoda LeetCode + system design practice.', 'Saath mein freelancing / applications shuru karo.'],
+          out: 'Aap apply karne, interview dene aur freelance clients dhundhne ke liye ready honge.' }
+    ];
+
+    // per stage, per topic: how (kya karna hai), hq (Hindi playlist search keyword), ch (channels)
+    var TX = [
+        [ { how: 'Roz ek chhota program likho (calculator, todo CLI, file reader). Video dekhke copy mat karo: pause karke khud likho. Ek hafte mein functions, classes, list/dict aur file handling aani chahiye.', hq: 'python tutorial', ch: ['CWH', 'WS'] },
+          { how: 'Naya folder banao, <code>python -m venv venv</code> chalao aur activate karo, <code>pip install requests python-dotenv</code>. .env mein ek fake key rakho aur code se padho. .env ko .gitignore mein zaroor daalo.', hq: 'python virtual environment', ch: [] },
+          { how: 'Do API calls pehle normal, phir <code>asyncio.gather</code> se saath-saath chalao aur time compare karo. Isi se samajh aayega streaming kyun async hoti hai.', hq: 'python asyncio', ch: [] },
+          { how: 'Teen endpoints banao: <code>GET /health</code>, <code>POST /echo</code> (Pydantic model ke saath), aur ek endpoint jo bahar ki API call kare. <code>/docs</code> page par test karo.', hq: 'fastapi', ch: [] },
+          { how: 'Aapko aata hai. Sirf README likhna, branch aur PR flow revise karo. Har project ki alag repo rakho.', hq: 'git github', ch: ['CWH'] },
+          { how: 'SQLBolt ke saare lessons (2&ndash;3 din). Math mein sirf vectors aur dot product ka matlab samjho. Embeddings mein yahi kaam aata hai.', hq: 'sql tutorial', ch: ['WS'] } ],
+        [ { how: 'Ek diagram banao: AI &sup; ML &sup; DL &sup; GenAI, aur har ka ek example likho.', hq: 'AI vs ML vs deep learning', ch: ['CX'] },
+          { how: 'Video dekhte waqt sirf 3 shabdon par dhyan do: <b>weights</b> (jo seekha jaata hai), <b>loss</b> (galti ka naap), <b>backprop</b> (galti se sudhaar). Formulas yaad karne ki zarurat nahi.', hq: 'neural network', ch: ['CX'] },
+          { how: 'Illustrated Transformer padho aur ek line mein likho: attention kya karta hai? (Jawab: har word dekhta hai ki baaki words mein se kaun zyada important hai.)', hq: 'transformer attention', ch: ['CX'] },
+          { how: 'Weekend par 3 ghante nikaalo. Notes mein pretraining, fine-tuning aur RLHF teen stage alag likho. Hallucination ka reason samjho.', hq: 'how chatgpt works llm', ch: ['KN'] },
+          { how: 'Bas 2 baatein pakki karo: training = model seekhta hai (mehnga, ek baar), inference = jawab deta hai (har request par). Overfitting = ratta lagana.', hq: 'overfitting underfitting', ch: ['CX'] } ],
+        [ { how: 'OpenAI Tokenizer mein apna naam, ek Hindi sentence aur code daalo aur dekho kitne tokens bane. Hindi zyada tokens leti hai, isliye cost zyada.', hq: 'tokens context window llm', ch: ['KN'] },
+          { how: 'Ek hi task (jaise email likhna) 5 tareeko se karao: simple, role ke saath, few-shot examples ke saath, step-by-step soch ke saath, XML tags ke saath. Outputs compare karo.', hq: 'prompt engineering', ch: ['KN', 'CX'] },
+          { how: 'LLM se kaho "sirf JSON do" aur Pydantic se validate karo. Galat format aaye to retry logic lagao.', hq: 'structured output json llm', ch: [] },
+          { how: 'Jaan-boojh kar aisa sawal pucho jiska jawab model ko nahi pata. Phir prompt mein "agar pata nahi to bolo pata nahi" jodkar fark dekho.', hq: 'llm hallucination', ch: [] },
+          { how: 'Ek hi prompt 3 models (Claude, GPT, Gemini free tier) par chalao. Speed, cost aur quality ka chhota table banao.', hq: 'claude gpt gemini comparison', ch: [] } ],
+        [ { how: 'Pehle Gemini free API ya Claude/OpenAI key lo. 10 line ka script likho: sawal bhejo, jawab print karo. Phir system prompt badalke dekho.', hq: 'openai api python', ch: ['KN', 'CX'] },
+          { how: 'Backend se <code>stream=True</code> use karo, FastAPI <code>StreamingResponse</code> se bhejo, frontend mein <code>fetch</code> + <code>ReadableStream</code> se chunk-by-chunk screen par likho.', hq: 'streaming chatbot fastapi', ch: ['PG'] },
+          { how: 'Messages array mein har turn append karo. History lambi ho jaye to purani baatein summarize karo ya sirf last N messages bhejo.', hq: 'chatbot memory langchain', ch: [] },
+          { how: 'Ek tool banao <code>get_weather(city)</code>. Model ko schema do, wo tool call maangega, aap function chalake result wapas bhejoge. Ye poora loop ek baar khud likho.', hq: 'function calling openai', ch: ['KN'] },
+          { how: '<code>try/except</code> + exponential backoff retry lagao. Har request ke tokens aur cost log karo (print bhi chalega).', hq: '', ch: [] },
+          { how: 'API key sirf backend ke .env mein. Frontend sirf aapke <code>/chat</code> endpoint ko call kare. Per-IP rate limit lagao taaki koi aapka bill na badha de.', hq: '', ch: [] } ],
+        [ { how: 'Chhote words ke embeddings nikalo ("dog", "puppy", "car") aur cosine similarity print karo. Dekho ki dog-puppy paas hain.', hq: 'embeddings vector explained', ch: ['CX', 'KN'] },
+          { how: 'Chroma se shuru karo (<code>pip install chromadb</code>). 20 documents daalo, query karo. Baad mein pgvector try karo: job mein Postgres zyada milta hai.', hq: 'vector database', ch: ['KN'] },
+          { how: 'Ek hi PDF ko 3 chunk sizes (200, 500, 1000 tokens) se todke retrieval quality compare karo.', hq: 'chunking rag', ch: [] },
+          { how: 'Pehle bina LangChain ke khud likho: embed &rarr; search &rarr; prompt mein context daalo &rarr; LLM. Phir wahi LangChain mein banao. Isse framework "magic" nahi lagega.', hq: 'RAG langchain', ch: ['KN', 'CX'] },
+          { how: 'Contextual Retrieval article padho. Phir BM25 + vector dono ka result merge karo, reranker lagake dekho kitna improve hua.', hq: 'hybrid search reranking rag', ch: [] },
+          { how: '30 sawal-jawab ka test set banao (Excel mein). Har change ke baad score dekho. Ye step aapko zyadatar candidates se alag karta hai.', hq: 'rag evaluation ragas', ch: [] } ],
+        [ { how: 'Pehle article padho ki agent <b>kab nahi</b> banana chahiye. Phir ek simple loop khud likho: model tool maange &rarr; aap chalao &rarr; result wapas do &rarr; jab tak model final jawab na de.', hq: 'ai agents', ch: ['KN', 'CX'] },
+          { how: 'LangChain Academy ka LangGraph course free hai. Ek graph banao: node = step, edge = agla step, state = shared data.', hq: 'langgraph', ch: ['KN', 'CX'] },
+          { how: 'Python SDK se ek chhota MCP server banao jisme 2 tools hon (jaise <code>get_projects</code>, <code>get_skills</code>). Claude Desktop / Claude Code se jodke test karo.', hq: 'MCP model context protocol', ch: [] },
+          { how: 'Ek hi chhota agent do framework mein banao aur compare karo. Isse samajh aayega kaunsa kab theek hai.', hq: 'crewai autogen', ch: ['KN'] },
+          { how: 'Ek approval step jodo: agent email bhejne se pehle aapse "haan / na" pooche. Production agents ka ye zaroori pattern hai.', hq: 'multi agent langgraph', ch: [] },
+          { how: 'n8n ko Docker ya cloud par chalao. Ek workflow banao: Telegram/WhatsApp message &rarr; AI jawab &rarr; Google Sheet mein save. Freelance clients ko ye bahut pasand aata hai.', hq: 'n8n', ch: [] } ],
+        [ { how: 'HF account banao, ek chhota model Hub se download karke 5 line mein chalao. Model card padhna seekho.', hq: 'hugging face transformers', ch: ['KN'] },
+          { how: 'Ollama install karo aur ek chhota model chalao (<code>ollama run llama3.2</code> jaisa). Phir Python se <code>localhost:11434</code> par API call karo. Laptop RAM dekhke model chuno.', hq: 'ollama local llm', ch: [] },
+          { how: 'Sirf basics: tensor banana, ek chhota linear model train karna. Itna kaafi hai.', hq: 'pytorch', ch: ['CX'] },
+          { how: 'Optional. Interest ho tabhi karo, poora ek weekend do aur saath mein code likho.', hq: 'build gpt from scratch', ch: [] },
+          { how: 'Unsloth ka free Colab notebook chalao, chhote dataset (100&ndash;500 examples) par fine-tune karo. Pehle prompt / RAG try kar lo, tabhi fine-tune karo.', hq: 'fine tuning llm lora', ch: ['KN', 'CX'] } ],
+        [ { how: 'Ek invoice ya screenshot upload karke LLM se uska data JSON mein nikalwao.', hq: 'vision llm image', ch: [] },
+          { how: 'Hosted API (Replicate / HF) se image banao. ComfyUI tab seekho jab image generation ka kaam lena ho.', hq: 'stable diffusion', ch: [] },
+          { how: 'Whisper se ek audio file ka text nikalo, phir ElevenLabs se wapas voice banao.', hq: 'whisper speech to text', ch: [] },
+          { how: 'Ye advanced hai. Pehle simple voice bot (speech-to-text &rarr; LLM &rarr; text-to-speech) banao, delay dekho, phir realtime API try karo.', hq: 'voice agent', ch: [] } ],
+        [ { how: 'Promptfoo mein 20 test cases likho. Prompt badalne ke baad dekho kaunse fail hue. Ise "regression test" kehte hain.', hq: 'llm evaluation', ch: [] },
+          { how: 'Langfuse (cloud free tier) apne chatbot se jodo. Har request ka cost aur time dekho.', hq: 'langfuse langsmith', ch: [] },
+          { how: 'Apne bot par khud prompt injection try karo ("pichhle instructions bhool jao..."). Phir system prompt aur input checks se bachao.', hq: 'prompt injection', ch: [] },
+          { how: 'Prompt caching on karo aur bill ka farak dekho. Aasan sawalon ke liye chhota model, mushkil ke liye bada: ise routing kehte hain.', hq: '', ch: [] },
+          { how: 'Apne FastAPI app ka Dockerfile likho, local chalao, phir Railway / Render par deploy karo.', hq: 'docker', ch: ['WS', 'CWH'] },
+          { how: 'AWS / Azure / GCP mein se ek chuno (job ads dekhke). Bedrock ya Azure OpenAI ka Hello World karo.', hq: 'aws bedrock', ch: [] } ],
+        [ { how: 'Portfolio mein "AI Projects" section jodo. Har project card mein: problem, tech stack, live link, GitHub, 30 second ka demo GIF.', hq: '', ch: [] },
+          { how: 'Resume mein har project ke saath number likho (accuracy, latency, cost). Keywords: RAG, LLM, LangGraph, FastAPI, Docker, evals.', hq: 'ai engineer resume', ch: [] },
+          { how: 'Mahine mein 1 hackathon ya 1 open-source issue ka target rakho. Chhote docs fix bhi count hote hain.', hq: '', ch: [] },
+          { how: 'Roz 1 LeetCode easy, hafte mein 1 system design ("PDF chatbot ka design batao"). Dost se mock interview lo.', hq: 'leetcode python', ch: ['AC'] },
+          { how: 'Pehle 1&ndash;2 local businesses ko free / sasta chatbot do, case study banao, phir Upwork / LinkedIn par pitch karo.', hq: 'freelancing ai chatbot', ch: [] },
+          { how: 'Roz subah 15 minute AI news ya ek blog padho. Hafte mein ek naya tool try karo.', hq: '', ch: [] } ]
+    ];
+
+    // -------- render --------
+    var KEY = 'genai-roadmap-v2';
+    var KIND = { video: 'Video', docs: 'Docs', course: 'Course', hindi: 'Hindi', tool: 'Tool' };
+
+    var skillsEl = document.getElementById('skills');
+    skillsEl.innerHTML = SKILLS.map(function (s) {
+        var label = { must: 'Must', high: 'High', good: 'Bonus' }[s[2]];
+        return '<div class="skillrow"><span>' + s[0] + '</span><div class="meter"><i style="width:' + s[1] + '%"></i></div><span class="badge ' + s[2] + '">' + label + '</span></div>';
+    }).join('');
+
+    var stagesEl = document.getElementById('stages');
+    var sideEl = document.getElementById('side');
+    var tid = 0;
+
+    stagesEl.innerHTML = STAGES.map(function (st, si) {
+        var topics = st.topics.map(function (t, ti) {
+            var id = tid++;
+            var x = (TX[si] && TX[si][ti]) || {};
+            var allR = t.r.slice();
+            if (x.hq) allR.push(['hindi', 'Hindi PLAYLISTS: "' + x.hq + '"', YTP(x.hq + ' hindi'), 'seedha playlists dikhengi']);
+            (x.ch || []).forEach(function (c) { var h = CH[c]; allR.push(['hindi', h[0] + ' &mdash; Playlists tab', h[1], h[2]]); });
+            var res = allR.map(function (r) {
+                return '<li data-k="' + r[0] + '"><a href="' + r[2] + '" target="_blank" rel="noopener"><span class="k ' + r[0] + '">' + KIND[r[0]] + '</span><span>' + r[1] + (r[3] ? ' <span class="n">&middot; ' + r[3] + '</span>' : '') + '</span></a></li>';
+            }).join('');
+            return '<div class="topic"><div class="topic-top"><label><input type="checkbox" data-id="' + id + '"><div><h3>' + t.n + '</h3><p>' + t.d + '</p></div></label></div>' +
+                (x.how ? '<div class="how"><b><svg class="ic"><use href="#i-pencil"/></svg>Kya karna hai:</b> ' + x.how + '</div>' : '') +
+                '<ul class="res">' + res + '</ul></div>';
+        }).join('');
+        return '<section class="stage" id="stage-' + si + '" data-stage><div class="card">' +
+            '<div class="stage-head"><div class="num">' + si + '</div><div><h2>' + st.title + '</h2>' +
+            '<div class="meta"><span class="pill time"><svg class="ic"><use href="#i-clock"/></svg>' + st.time + '</span><span class="pill lvl">' + st.level + '</span></div></div></div>' +
+            '<p class="goal">' + st.goal + '</p><div class="why">' + st.why + '</div>' +
+            '<div class="steps"><h4><svg class="ic"><use href="#i-clipboard"/></svg>Is stage ko kaise karein (order mein)</h4><ol>' + SX[si].steps.map(function (s) { return '<li>' + s + '</li>'; }).join('') + '</ol>' +
+            '<p class="out"><b><svg class="ic" style="color:var(--green)"><use href="#i-target"/></svg>Stage ke baad:</b> ' + SX[si].out + '</p></div>' + topics +
+            (st.project ? '<div class="project">' + st.project + '</div>' : '') +
+            (st.job ? '<div class="job">' + st.job + '</div>' : '') +
+            '</div></section>';
+    }).join('');
+
+    sideEl.innerHTML = '<h4>Stages</h4>' + STAGES.map(function (st, i) {
+        return '<a href="#stage-' + i + '" data-side="' + i + '"><b>' + i + '</b><span>' + st.title + '</span></a>';
+    }).join('');
+
+    // -------- progress --------
+    var boxes = Array.prototype.slice.call(document.querySelectorAll('.topic-top input'));
+    var stageEls = Array.prototype.slice.call(document.querySelectorAll('[data-stage]'));
+    var bar = document.getElementById('bar'), pct = document.getElementById('pct');
+
+    function load() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
+    function save() { try { localStorage.setItem(KEY, JSON.stringify(boxes.map(function (b) { return b.checked; }))); } catch (e) {} }
+    function render() {
+        var done = boxes.filter(function (b) { return b.checked; }).length;
+        var p = boxes.length ? Math.round(done / boxes.length * 100) : 0;
+        bar.style.width = p + '%'; pct.textContent = p + '%';
+        stageEls.forEach(function (s, i) {
+            var inp = s.querySelectorAll('.topic-top input');
+            var all = Array.prototype.every.call(inp, function (x) { return x.checked; });
+            s.classList.toggle('done', all);
+            var a = sideEl.querySelector('[data-side="' + i + '"]');
+            if (a) a.classList.toggle('done', all);
+        });
+    }
+    var saved = load();
+    boxes.forEach(function (b, i) {
+        b.checked = !!saved[i];
+        b.addEventListener('change', function () { save(); render(); });
+    });
+    document.getElementById('reset').addEventListener('click', function () {
+        if (confirm('Saara progress reset karna hai?')) {
+            boxes.forEach(function (b) { b.checked = false; });
+            save(); render();
+        }
+    });
+    render();
+
+    // -------- scroll-spy: current stage ko sidebar mein highlight --------
+    var sideLinks = Array.prototype.slice.call(sideEl.querySelectorAll('a'));
+    var current = -1, ticking = false;
+    function spy() {
+        ticking = false;
+        var idx = -1;
+        stageEls.forEach(function (s, i) {
+            if (s.getBoundingClientRect().top <= 140) idx = i;
+        });
+        // roadmap section ke bahar ho to koi highlight nahi
+        var first = stageEls[0].getBoundingClientRect().top;
+        var last = stageEls[stageEls.length - 1].getBoundingClientRect().bottom;
+        if (first > 140 || last < 140) idx = -1;
+        if (idx === current) return;
+        current = idx;
+        sideLinks.forEach(function (a, i) { a.classList.toggle('active', i === idx); });
+        if (idx >= 0) {
+            var a = sideLinks[idx];
+            var top = a.offsetTop, h = sideEl.clientHeight;
+            if (top < sideEl.scrollTop || top + a.offsetHeight > sideEl.scrollTop + h) {
+                sideEl.scrollTop = top - h / 2;
+            }
+        }
+    }
+    window.addEventListener('scroll', function () {
+        if (!ticking) { ticking = true; requestAnimationFrame(spy); }
+    }, { passive: true });
+    window.addEventListener('resize', spy);
+    spy();
+
+    // -------- filters --------
+    document.getElementById('filters').addEventListener('click', function (e) {
+        var btn = e.target.closest('.fbtn');
+        if (!btn) return;
+        var f = btn.getAttribute('data-f');
+        Array.prototype.forEach.call(document.querySelectorAll('.fbtn'), function (b) { b.classList.toggle('on', b === btn); });
+        Array.prototype.forEach.call(document.querySelectorAll('.res li'), function (li) {
+            li.classList.toggle('hide', f !== 'all' && li.getAttribute('data-k') !== f);
+        });
+    });
+})();
+</script>
+</body>
+</html>
